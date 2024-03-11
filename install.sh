@@ -59,7 +59,7 @@ for arg in "$@"; do
 
                     sudo rm -rf $root/pi-server
                     cd $rpias
-                    cat _node.txt >> server.js
+                    cat _node.txt >> $root/pi-server/server.js
                     mkdir $root/pi-server
                     cd $root/pi-server
                     npm init -y
