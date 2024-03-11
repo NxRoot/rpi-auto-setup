@@ -18,18 +18,6 @@ for arg in "$@"; do
         key="${arg%%=*}"
         value="${arg#*=}"
 
-        # Set root folder
-        if [ $key = "--root" ]; then
-            if [ $key != $value ]; then
-                $root=$value
-                cd $root
-            else
-                echo 
-                echo [$key] missing value: $key=$root
-                echo 
-            fi
-        fi
-        
         # Install TFT
         if [ $key = "--tft" ]; then
             if [ $key != $value ]; then
@@ -73,6 +61,7 @@ for arg in "$@"; do
                     sudo cat _node.txt >> server.js
                     npm init
                     npm i express
+                    sed -i -e '$i \cd ${root}/pi-server && npm start & cd ..\n' /etc/rc.local
                 fi
             else
                 echo 
@@ -112,4 +101,8 @@ done
 
 echo
 echo [Completed] RPI Auto-Setup
+echo Device will reboot now...
 echo
+
+sleep 5000
+sudo reboot
