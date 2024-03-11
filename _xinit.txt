@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+
+GEO="$(fbset -s | awk '$1 == "geometry" { print $2":"$3 }')"
+WIDTH=$(echo "$GEO" | cut -d: -f1)
+HEIGHT=$(echo "$GEO" | cut -d: -f2)
+
+xset -dpms
+xset s off
+xset s noblank
+
+chromium-browser --kiosk "http://localhost:5001" \
+  --window-size=$WIDTH,$HEIGHT \
+  --window-position=-10,0 \
+  --start-fullscreen \
+  --start-maximized \
+  --kiosk \
+  --incognito \
+  --noerrdialogs \
+  --disable-translate \
+  --no-first-run \
+  --fast \
+  --fast-start \
+  --use-gl=none \
+  --autoplay-policy=no-user-gesture-required \
+  --disable-infobars \
+  --disable-features=TranslateUI \
+  --disk-cache-dir=/dev/null \
+  --overscroll-history-navigation=0 \
+  --disable-pinch \
+  --enable-kiosk-mode \
+  --enabled \
+  --disable-java \
+  --disable-restore-session-state \
+  --disable-sync --disable-translate \
+  --disable-touch-drag-drop \
+  --disable-touch-editing \
+  --test-type \
+  --ignore-certificate-errors \
+  --no-sandbox
