@@ -8,8 +8,6 @@ echo
 root=/home/pi
 # Setup folder
 rpias=$(dirname "$0")
-# update device
-sudo apt update
 
 # Iterate arguments
 for arg in "$@"; do
@@ -21,7 +19,7 @@ for arg in "$@"; do
         value="${arg#*=}"
 
         # Set root folder
-        if [ $key = "path" ]; then
+        if [ $key = "--root" ]; then
             if [ $key != $value ]; then
                 $root=$value
                 cd $root
@@ -33,7 +31,7 @@ for arg in "$@"; do
         fi
         
         # Install TFT
-        if [ $key = "tft" ]; then
+        if [ $key = "--tft" ]; then
             if [ $key != $value ]; then
                 echo [Installing] $key...
                 cd $root
@@ -50,7 +48,7 @@ for arg in "$@"; do
         fi
 
         # Install Node JS
-        if [ $key = "node" ]; then
+        if [ $key = "--node" ]; then
             if [ $key != $value ]; then
                 echo [Installing] $key...
                 cd $rpias
@@ -64,8 +62,28 @@ for arg in "$@"; do
             fi
         fi
 
+        # Install REST API
+        if [ $key = "--rest" ]; then
+            if [ $key != $value ]; then
+                if [ $value == "node"]; then
+                    echo [Installing] $key...
+                    cd $rpias
+                    mkdir $root/pi-server
+                    cd $root/pi-server
+                    sudo cat _node.txt >> server.js
+                    npm init
+                    npm i express
+                fi
+            else
+                echo 
+                echo [$key] argument is missing value: $key=node
+                echo 
+                exit 1
+            fi
+        fi
+
         # Install Samba
-        if [ $key = "smb" ]; then
+        if [ $key = "--smb" ]; then
             echo [Installing] $key...
             cd $rpias
             mkdir /home/pi/shared
@@ -75,7 +93,7 @@ for arg in "$@"; do
         fi
 
         # Install Chromium
-        if [ $key = "chrome" ]; then
+        if [ $key = "--chrome" ]; then
             echo [Installing] $key...
 
             cd $rpias
