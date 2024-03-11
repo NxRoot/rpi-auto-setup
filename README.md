@@ -157,6 +157,22 @@ cd /home/pi/pi-server
 mkdir client
 mkdir client/build
 ```
+### Create Website
+`sudo nano client/build/index.html`
+```bash
+<!doctype html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <h1>
+      Hello world!
+    </h1>
+  </body>
+</html>
+```
 </details>
 
 <details>
@@ -171,6 +187,11 @@ sudo apt-get install -y nodejs
 ```bash
 cd /home/pi/pi-server
 npx create-react-app client
+```
+### Build Website
+```bash
+cd /home/pi/pi-server/client
+npm run build
 ```
 </details>
 
