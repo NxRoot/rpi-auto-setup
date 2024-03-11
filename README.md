@@ -215,6 +215,7 @@ npm run build
 ### Create Folder 
 ```bash
 mkdir /home/pi/shared
+sudo chmod -R 777 /home/pi/shared
 ```
 ### Install Samba 
 ```bash
@@ -227,11 +228,13 @@ sudo apt install -y samba samba-common-bin
 [shared]
 path=/home/pi/shared
 public = yes
+read only = no
 guest only = yes
-writable = yes
+writeable = yes
+browseable = yes
+guest ok = yes
 force create mode = 0666
 force directory mode = 0777
-browseable = yes
 ```
 
 <br></br>
