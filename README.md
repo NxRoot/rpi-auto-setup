@@ -71,7 +71,7 @@ cd rpi-auto-setup
 
 # Usage
 ```bash
-sh ./install.sh node=20 tft=MHS35 chrome
+sh ./install.sh --node=20 --tft=MHS35 --chrome
 ```
 
 
