@@ -73,7 +73,7 @@ cd rpi-auto-setup
 # Usage
 ### Available options
 ```bash
-sh install.sh --node=20 --rest=node --tft=MHS35 --chrome --smb
+sh install.sh --node=20 --rest=node --chrome --smb --tft=MHS35
 ```
 <details>
   <summary> &nbsp; <b>Install NodeJS</b></summary>
