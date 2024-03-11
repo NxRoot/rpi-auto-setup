@@ -63,17 +63,15 @@ for arg in "$@"; do
                     npm init
                     npm i express
 
-                    file=rc.local
-                    line="cd $root/pi-server && npm start & cd .."
+                    file=/etc/rc.local
+                    search="exit 0"
+                    newLine="cd $root/pi-server && npm start & cd .."
 
-                    if grep -qF "$line" $file; then
-                        # If the line exists, remove it
-                        sed -i "/$line/d" "$file"
-                    else
-                        # If the line doesn't exist, append it
-                        sed -i "/exit 0/d" "$file"
-                        echo "$line\n\nexit 0" >> $file
-                    fi
+                    # Remove "exit 0"
+                    ex -s +"g/$search/d" -cwq $file
+
+                    # Append line with "exit 0" in the end
+                    echo "$newLine\n\n$search" >> $file
 
                 fi
             else
