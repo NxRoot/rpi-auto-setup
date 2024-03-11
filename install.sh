@@ -14,71 +14,82 @@ sudo apt update
 # Iterate arguments
 for arg in "$@"; do
 
-    key="${arg%%=*}"
-    value="${arg#*=}"
+    # check if arg starts with --
+    if [ "${arg:0:2}" = "--" ]; then
 
-    # Set root folder
-    if [ $key = "path" ]; then
-        if [ $key != $value ]; then
-            $root=$value
-            cd $root
-        else
-            echo 
-            echo [$key] missing value: $key=$root
-            echo 
-        fi
-    fi
-    
-    # Install TFT
-    if [ $key = "tft" ]; then
-        if [ $key != $value ]; then
-            echo [Installing] $key...
-            cd $root
-            git clone https://github.com/goodtft/LCD-show.git
-            chmod -R 755 LCD-show
-            cd LCD-show/
-            sudo ./$value-show
-        else
-            echo 
-            echo [$key] missing value: $key=MHS35
-            echo 
-        fi
-    fi
+        key="${arg%%=*}"
+        value="${arg#*=}"
 
-    # Install Node JS
-    if [ $key = "node" ]; then
-        if [ $key != $value ]; then
+        # Set root folder
+        if [ $key = "path" ]; then
+            if [ $key != $value ]; then
+                $root=$value
+                cd $root
+            else
+                echo 
+                echo [$key] missing value: $key=$root
+                echo 
+            fi
+        fi
+        
+        # Install TFT
+        if [ $key = "tft" ]; then
+            if [ $key != $value ]; then
+                echo [Installing] $key...
+                cd $root
+                git clone https://github.com/goodtft/LCD-show.git
+                chmod -R 755 LCD-show
+                cd LCD-show/
+                sudo ./$value-show
+            else
+                echo 
+                echo [$key] missing value: $key=MHS35
+                echo 
+                exit 1
+            fi
+        fi
+
+        # Install Node JS
+        if [ $key = "node" ]; then
+            if [ $key != $value ]; then
+                echo [Installing] $key...
+                cd $rpias
+                curl -fsSL https://deb.nodesource.com/setup_$value.x | sudo -E bash -
+                sudo apt-get install -y nodejs
+            else
+                echo 
+                echo [$key] argument is missing value: $key=20
+                echo 
+                exit 1
+            fi
+        fi
+
+        # Install Samba
+        if [ $key = "smb" ]; then
             echo [Installing] $key...
             cd $rpias
-            curl -fsSL https://deb.nodesource.com/setup_$value.x | sudo -E bash -
-            sudo apt-get install -y nodejs
-        else
-            echo 
-            echo [$key] argument is missing value: $key=20
-            echo 
+            mkdir /home/pi/shared
+            sudo chmod -R 777 /home/pi/shared
+            sudo apt install -y samba samba-common-bin
+            sudo cat _smb.txt >> /.xinitrc
         fi
+
+        # Install Chromium
+        if [ $key = "chrome" ]; then
+            echo [Installing] $key...
+
+            cd $rpias
+            sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox chromium-browser -y
+            sudo cat _bash.txt >> $root/.bash_profile
+            sudo cat _xinit.txt >> /.xinitrc
+        fi
+
+    else
+        echo 
+        echo "Unknown argument: $arg"
+        echo 
+        exit 1
     fi
-
-    # Install Samba
-    if [ $key = "smb" ]; then
-        echo [Installing] $key...
-        cd $rpias
-        mkdir /home/pi/shared
-        sudo chmod -R 777 /home/pi/shared
-        sudo apt install -y samba samba-common-bin
-        sudo cat _smb.txt >> /.xinitrc
-    fi
-
-    # Install Chromium
-    if [ $key = "chrome" ]; then
-        echo [Installing] $key...
-
-        cd $rpias
-        sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox chromium-browser -y
-        sudo cat _bash.txt >> $root/.bash_profile
-        sudo cat _xinit.txt >> /.xinitrc
-    fi
-
 done
 
 echo
