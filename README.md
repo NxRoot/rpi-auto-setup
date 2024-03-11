@@ -73,7 +73,7 @@ cd rpi-auto-setup
 # Usage
 ### Available options
 ```bash
-sh ./install.sh --node=20 --tft=MHS35 --chrome --smb
+sh install.sh --node=20 --rest=node --tft=MHS35 --chrome --smb
 ```
 <details>
   <summary> &nbsp; <b>Install NodeJS</b></summary>
@@ -82,7 +82,7 @@ sh ./install.sh --node=20 --tft=MHS35 --chrome --smb
 
 Select Node JS version
 ```bash
-sh ./install.sh --node=20
+sh install.sh --node=20
 ```
 </details>
 
@@ -93,7 +93,7 @@ sh ./install.sh --node=20
 
 Select your TFT model
 ```bash
-sh ./install.sh --tft=MHS35
+sh install.sh --tft=MHS35
 ```
 </details>
 

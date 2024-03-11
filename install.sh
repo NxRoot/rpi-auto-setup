@@ -33,7 +33,7 @@ for arg in "$@"; do
         # Install TFT
         if [ $key = "--tft" ]; then
             if [ $key != $value ]; then
-                echo [Installing] $key...
+                echo [Installing] $key
                 cd $root
                 git clone https://github.com/goodtft/LCD-show.git
                 chmod -R 755 LCD-show
@@ -50,7 +50,7 @@ for arg in "$@"; do
         # Install Node JS
         if [ $key = "--node" ]; then
             if [ $key != $value ]; then
-                echo [Installing] $key...
+                echo [Installing] $key
                 cd $rpias
                 curl -fsSL https://deb.nodesource.com/setup_$value.x | sudo -E bash -
                 sudo apt-get install -y nodejs
@@ -66,7 +66,7 @@ for arg in "$@"; do
         if [ $key = "--rest" ]; then
             if [ $key != $value ]; then
                 if [ $value == "node"]; then
-                    echo [Installing] $key...
+                    echo [Installing] $key
                     cd $rpias
                     mkdir $root/pi-server
                     cd $root/pi-server
@@ -84,7 +84,7 @@ for arg in "$@"; do
 
         # Install Samba
         if [ $key = "--smb" ]; then
-            echo [Installing] $key...
+            echo [Installing] $key
             cd $rpias
             mkdir /home/pi/shared
             sudo chmod -R 777 /home/pi/shared
@@ -94,7 +94,7 @@ for arg in "$@"; do
 
         # Install Chromium
         if [ $key = "--chrome" ]; then
-            echo [Installing] $key...
+            echo [Installing] $key
 
             cd $rpias
             sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox chromium-browser -y
