@@ -38,7 +38,7 @@ Commands to setup a minimal raspbian installation with some useful features.
 sudo apt update
 ```
 
-# Raspbian Config
+### Raspbian Config
 ```bash
 sudo raspi-config
 ```
@@ -52,12 +52,28 @@ sudo raspi-config
 </details>
 
 <br></br>
+
+# Installation
+```bash
+git clone https://github.com/NxRoot/rpi-auto-setup.git
+cd rpi-auto-setup
+```
+
+# Usage
+```bash
+sudo sh ./install.sh git chrome
+```
+```bash
+sudo sh ./install.sh git node=20 tft=MHS35 chrome
+```
+
+
+<br></br>
 <br></br>
 # Host REST API
 > This will host a local server running on http://localhost:5001
 <details>
   <summary> &nbsp; <b>Using NodeJS</b></summary>
-
 
 ### Install NodeJS 
 ```bash
