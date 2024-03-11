@@ -210,7 +210,7 @@ npm run build
 
 <br></br>
 <br></br>
-# Sharing Files with SMB
+# Sharing Files with SMB 
 
 ### Create Folder 
 ```bash
@@ -220,7 +220,7 @@ mkdir /home/pi/shared
 ```bash
 sudo apt install -y samba samba-common-bin
 ```
-### Config Samba
+### Config Samba ([More](https://www.jeffgeerling.com/blog/2021/htgwa-create-samba-smb-share-on-raspberry-pi))
 `sudo nano /etc/samba/smb.conf`
 ```bash
 # Add to end of file
@@ -237,6 +237,7 @@ browseable = yes
 <br></br>
 <br></br>
 # Open browser on boot
+> You must enable <b>Console Auto-Login</b> on the Raspbian Config.
 
 ### Install Chromium 
 ```bash
@@ -299,13 +300,14 @@ chromium-browser --kiosk "http://localhost:5001" \
 <br></br>
 <br></br>
 # Setup TFT Screen
+> Please read documentation for your TFT model: [LCD-WIKI](http://www.lcdwiki.com/Main_Page)
 
 ### Install GIT 
 ```bash
 sudo apt install -y git
 ```
 
-### Install TFT Drivers (Optional)
+### Install TFT Drivers
 ```bash
 git clone https://github.com/goodtft/LCD-show.git
 chmod -R 755 LCD-show
