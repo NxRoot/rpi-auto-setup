@@ -13,7 +13,7 @@ rpias=$(pwd)
 for arg in "$@"; do
 
     # check if arg starts with --
-    if [ $arg = --* ]; then
+    if [ "${arg#--}" != "$arg" ]; then
 
         key="${arg%%=*}"
         value="${arg#*=}"
@@ -58,9 +58,10 @@ for arg in "$@"; do
                     echo [Installing] $key
 
                     sudo rm -rf $root/pi-server
+                    mkdir $root/pi-server
+
                     cd $rpias
                     cat _node.txt >> $root/pi-server/server.js
-                    mkdir $root/pi-server
                     cd $root/pi-server
                     npm init -y
                     npm i express
@@ -87,12 +88,12 @@ for arg in "$@"; do
         # Install Samba
         if [ $key = "--smb" ]; then
             echo [Installing] $key
-            sudo rm -rf /home/pi/shared
+            sudo rm -rf $root/shared
             cd $rpias
-            mkdir /home/pi/shared
-            sudo chmod -R 777 /home/pi/shared
+            mkdir $root/shared
+            sudo chmod -R 777 $root/shared
             sudo apt install -y samba samba-common-bin
-            sudo cat _smb.txt >> /.xinitrc
+            sudo cat _smb.txt >> $root/.xinitrc
         fi
 
         # Install Chromium
@@ -102,7 +103,7 @@ for arg in "$@"; do
             cd $rpias
             sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox chromium-browser -y
             sudo cat _bash.txt >> $root/.bash_profile
-            sudo cat _xinit.txt >> /.xinitrc
+            sudo cat _xinit.txt >> $root/.xinitrc
         fi
 
     else
