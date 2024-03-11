@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo
 echo RPI Auto-Setup
@@ -13,7 +13,7 @@ rpias=$(pwd)
 for arg in "$@"; do
 
     # check if arg starts with --
-    if [ "${arg:0:2}" = "--" ]; then
+    if [ $arg = --* ]; then
 
         key="${arg%%=*}"
         value="${arg#*=}"
@@ -22,6 +22,7 @@ for arg in "$@"; do
         if [ $key = "--tft" ]; then
             if [ $key != $value ]; then
                 echo [Installing] $key
+                sudo rm -rf $root/LCD-show
                 cd $root
                 git clone https://github.com/goodtft/LCD-show.git
                 chmod -R 755 LCD-show
@@ -53,14 +54,15 @@ for arg in "$@"; do
         # Install REST API
         if [ $key = "--rest" ]; then
             if [ $key != $value ]; then
-                if [ $value == "node" ]; then
+                if [ $value = "node" ]; then
                     echo [Installing] $key
 
+                    sudo rm -rf $root/pi-server
                     cd $rpias
+                    cat _node.txt >> server.js
                     mkdir $root/pi-server
                     cd $root/pi-server
-                    sudo cat _node.txt >> server.js
-                    npm init
+                    npm init -y
                     npm i express
 
                     file=/etc/rc.local
@@ -85,6 +87,7 @@ for arg in "$@"; do
         # Install Samba
         if [ $key = "--smb" ]; then
             echo [Installing] $key
+            sudo rm -rf /home/pi/shared
             cd $rpias
             mkdir /home/pi/shared
             sudo chmod -R 777 /home/pi/shared
