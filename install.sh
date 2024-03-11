@@ -61,7 +61,6 @@ for arg in "$@"; do
                     sudo cat _node.txt >> server.js
                     npm init
                     npm i express
-                    sed -i -e '$i \cd ${root}/pi-server && npm start & cd ..\n' /etc/rc.local
                 fi
             else
                 echo 

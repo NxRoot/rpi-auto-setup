@@ -1,4 +1,4 @@
-# RPI - Auto Setup
+# [WIP] RPI - Auto Setup
 Commands to setup a minimal raspbian installation with some useful features.
 
 
