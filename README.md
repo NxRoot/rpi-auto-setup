@@ -61,10 +61,10 @@ cd rpi-auto-setup
 
 # Usage
 ```bash
-sudo sh ./install.sh git chrome
+sh ./install.sh git chrome
 ```
 ```bash
-sudo sh ./install.sh git node=20 tft=MHS35 chrome
+sh ./install.sh git node=20 tft=MHS35 chrome
 ```
 
 
