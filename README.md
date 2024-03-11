@@ -41,6 +41,7 @@ sudo apt update
 
 <br></br>
 # Host REST API
+> This will host a local server running on http://localhost:5001
 <details>
   <summary> &nbsp; <b>Using NodeJS</b></summary>
 
@@ -90,6 +91,11 @@ npm init
 ```bash
 npm i express
 ```
+
+### Start Server
+```bash
+npm start
+```
 </details>
 
 <details>
@@ -108,7 +114,7 @@ python3 -m venv .venv
 
 ### Activate virtual environment
 ```bash
-source .venv/bin/activate
+source venv/bin/activate
 ```
 
 ### Install Flask
@@ -132,10 +138,16 @@ def index():
 def message():
     return "Hello from Python"
 ```
+
+### Start Server
+```bash
+venv/bin/flask --app ./server.py run --no-debugger
+```
 </details>
 
 <br></br>
 # Host Web App
+> This will add a web application to the previously hosted server.
 <details>
   <summary> &nbsp; <b>Using Html</b></summary>
 
