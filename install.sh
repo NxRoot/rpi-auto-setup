@@ -43,6 +43,7 @@ for arg in "$@"; do
                 cd $rpias
                 curl -fsSL https://deb.nodesource.com/setup_$value.x | sudo -E bash -
                 sudo apt-get install -y nodejs
+                sudo npm install -g npm
             else
                 echo 
                 echo [$key] argument is missing value: $key=20
@@ -71,10 +72,10 @@ for arg in "$@"; do
                     newLine="cd $root/pi-server && npm start & cd .."
 
                     # Remove "exit 0"
-                    ex -s +"g/$search/d" -cwq $file
+                    sudo ex -s +"g/$search/d" -cwq $file
 
                     # Append line with "exit 0" in the end
-                    echo "$newLine\n\n$search" >> $file
+                    sudo echo "$newLine\n\n$search" >> $file
 
                 fi
             else
