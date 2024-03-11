@@ -7,7 +7,7 @@ echo
 # Root folder
 root=/home/pi
 # Setup folder
-rpias=$(dirname "$0")
+rpias=$(pwd)
 
 # Iterate arguments
 for arg in "$@"; do
@@ -53,14 +53,28 @@ for arg in "$@"; do
         # Install REST API
         if [ $key = "--rest" ]; then
             if [ $key != $value ]; then
-                if [ $value == "node"]; then
+                if [ $value == "node" ]; then
                     echo [Installing] $key
+
                     cd $rpias
                     mkdir $root/pi-server
                     cd $root/pi-server
                     sudo cat _node.txt >> server.js
                     npm init
                     npm i express
+
+                    file=rc.local
+                    line="cd $root/pi-server && npm start & cd .."
+
+                    if grep -qF "$line" $file; then
+                        # If the line exists, remove it
+                        sed -i "/$line/d" "$file"
+                    else
+                        # If the line doesn't exist, append it
+                        sed -i "/exit 0/d" "$file"
+                        echo "$line\n\nexit 0" >> $file
+                    fi
+
                 fi
             else
                 echo 
@@ -100,8 +114,9 @@ done
 
 echo
 echo [Completed] RPI Auto-Setup
+echo
 echo Device will reboot now...
 echo
 
-sleep 5000
-sudo reboot
+# sleep 5000
+# sudo reboot
