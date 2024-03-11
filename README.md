@@ -1,0 +1,266 @@
+# RPI - Auto Setup
+Commands to setup a minimal raspbian installation with some useful features.
+<br></br>
+# First Steps
+<details>
+  <summary> &nbsp; <b>Flash SD Card with Raspbian OS</b></summary>
+
+1. ### &nbsp; Open [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
+2. ### &nbsp; Choose Device (RPI 3, 4, 400, 5)
+3. ### &nbsp; Choose OS --> `Raspberry Pi OS (Other)`
+4. ### &nbsp; Select `Raspbian x64 Legacy - No Desktop (0.3gb)`
+5. ### &nbsp; Choose USB Storage (SD Card Drive)
+6. ### &nbsp; Configure settings before flashing
+    - Setup Wifi Network
+    - Enable SSH
+    - User: Pi
+    - Password: YOUR PASSWORD
+</details>
+
+<details>
+  <summary> &nbsp; <b>Connect to device using SSH</b></summary>
+
+1. ### &nbsp; Open terminal on a pc in the same network
+2. ### &nbsp; Find the IP address of your RPI (Windows)
+    ```bash
+    nslookup raspberrypi
+    ```
+3. ### &nbsp; Connect to RPI using SSH
+    ```bash
+    ssh pi@xxx.xxx.xxx
+    ```
+
+</details>
+
+
+
+### Update RPI
+```bash
+sudo apt update
+```
+
+<br></br>
+# Host REST API
+<details>
+  <summary> &nbsp; <b>Using NodeJS</b></summary>
+
+
+### Install NodeJS 
+```bash
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+### Create Folder 
+```bash
+mkdir /home/pi/pi-server
+cd /home/pi/pi-server
+```
+
+### Create Server 
+`sudo nano server.js`
+```js
+const path = require('path')
+const express = require('express')
+const app = express()
+const PORT = 5001
+
+// serve static assets
+app.use(express.static('client/build'));
+
+// Create API endpoints
+app.get('/api/message', (req, res) => {
+    res.json({message: "Hello from Express JS"})
+});
+
+// Send everything else to static content
+app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client/build', 'index.html')));
+
+// Open server on specified port
+console.log('Server started on port:', PORT)
+app.listen(PORT)
+```
+
+### Initialize Project 
+```bash
+npm init
+```
+
+### Install Express JS
+```bash
+npm i express
+```
+</details>
+
+<details>
+  <summary> &nbsp; <b>Using Python</b></summary>
+
+### Create Folder 
+```bash
+mkdir /home/pi/pi-server
+cd /home/pi/pi-server
+```
+
+### Create virtual environment
+```bash
+python3 -m venv .venv
+```
+
+### Activate virtual environment
+```bash
+source .venv/bin/activate
+```
+
+### Install Flask
+```bash
+pip install flask
+pip install python-dotenv
+```
+
+### Create Server
+`sudo nano server.py`
+```py
+from flask import Flask
+
+app = Flask(__name__, static_folder='./client/build', static_url_path='/')
+
+@app.route('/', methods=['GET'])
+def index():
+    return app.send_static_file('index.html')
+
+@app.route('/api/message', methods=['GET'])
+def message():
+    return "Hello from Python"
+```
+</details>
+
+<br></br>
+# Host Web App
+<details>
+  <summary> &nbsp; <b>Using Html</b></summary>
+
+### Create Folders
+```bash
+cd /home/pi/pi-server
+mkdir client
+mkdir client/build
+```
+</details>
+
+<details>
+  <summary> &nbsp; <b>Using React</b></summary>
+
+### Install NodeJS 
+```bash
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+### Create React App
+```bash
+cd /home/pi/pi-server
+npx create-react-app client
+```
+</details>
+
+<br></br>
+# Sharing Files with SMB
+
+### Create Folder 
+```bash
+mkdir /home/pi/shared
+```
+### Install Samba 
+```bash
+sudo apt install -y samba samba-common-bin
+```
+### Config Samba
+`sudo nano /etc/samba/smb.conf`
+```bash
+# Add to end of file
+[shared]
+path=/home/pi/shared
+public = yes
+guest only = yes
+writable = yes
+force create mode = 0666
+force directory mode = 0777
+browseable = yes
+```
+
+<br></br>
+# Open browser on boot
+
+### Install Chromium 
+```bash
+sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox chromium-browser
+```
+
+### Boot Config
+`sudo nano /home/pi/.bash_profile`
+```bash
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && startx -- -nocursor
+```
+
+### Start Script
+`sudo nano /home/pi/.xinitrc`
+```bash
+#!/usr/bin/env sh
+
+GEO="$(fbset -s | awk '$1 == "geometry" { print $2":"$3 }')"
+WIDTH=$(echo "$GEO" | cut -d: -f1)
+HEIGHT=$(echo "$GEO" | cut -d: -f2)
+
+# Hide console
+xset -dpms
+xset s off
+xset s noblank
+
+# Start browser
+chromium-browser --kiosk "http://localhost:5001" \
+  --window-size=$WIDTH,$HEIGHT \
+  --window-position=-10,0 \
+  --start-fullscreen \
+  --start-maximized \
+  --kiosk \
+  --incognito \
+  --noerrdialogs \
+  --disable-translate \
+  --no-first-run \
+  --fast \
+  --fast-start \
+  --use-gl=none \
+  --autoplay-policy=no-user-gesture-required \
+  --disable-infobars \
+  --disable-features=TranslateUI \
+  --disk-cache-dir=/dev/null \
+  --overscroll-history-navigation=0 \
+  --disable-pinch \
+  --enable-kiosk-mode \
+  --enabled \
+  --disable-java \
+  --disable-restore-session-state \
+  --disable-sync --disable-translate \
+  --disable-touch-drag-drop \
+  --disable-touch-editing \
+  --test-type \
+  --ignore-certificate-errors \
+  --no-sandbox
+
+```
+
+<br></br>
+# Setup TFT Screen
+
+### Install GIT 
+```bash
+sudo apt install -y git
+```
+
+### Install TFT Drivers (Optional)
+```bash
+git clone https://github.com/goodtft/LCD-show.git
+chmod -R 755 LCD-show
+cd LCD-show/
+sudo ./MHS35-show
+sudo reboot
+```
