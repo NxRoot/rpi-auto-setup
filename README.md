@@ -45,10 +45,10 @@ sudo raspi-config
 <details>
   <summary> &nbsp; <b>Enable Console Auto-Login</b></summary>
 
-1.  ### &nbsp; Choose --> System Options
-2.  ### &nbsp; Choose --> Boot / Auto Login
-3.  ### &nbsp; Choose --> Console Autologin
-4.  ### &nbsp; Select Finish, and reboot the Raspberry Pi.
+1.  ### &nbsp; Choose --> `System Options`
+2.  ### &nbsp; Choose --> `Boot / Auto Login`
+3.  ### &nbsp; Choose --> `Console Autologin`
+4.  ### &nbsp; Choose --> `Finish`
 </details>
 
 <br></br>
