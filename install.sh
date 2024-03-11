@@ -34,7 +34,6 @@ for arg in "$@"; do
         if [ $key != $value ]; then
             echo [Installing] $key...
             cd $root
-            sudo apt install -y git
             git clone https://github.com/goodtft/LCD-show.git
             chmod -R 755 LCD-show
             cd LCD-show/
@@ -44,13 +43,6 @@ for arg in "$@"; do
             echo [$key] missing value: $key=MHS35
             echo 
         fi
-    fi
-
-    # Install GIT
-    if [ $key = "git" ]; then
-        echo [Installing] $key...
-        cd $rpias
-        sudo apt install -y git
     fi
 
     # Install Node JS
