@@ -1,7 +1,11 @@
 
 [shared]
 path=/home/pi/shared
-writeable=Yes
-create mask=0777
-directory mask=0777
-public=no
+public = yes
+read only = no
+guest only = yes
+writeable = yes
+browseable = yes
+guest ok = yes
+force create mode = 0666
+force directory mode = 0777
