@@ -257,8 +257,11 @@ sh ./install.sh --tft=MHS35
   npm run build
   ```
   </details>
+  
+  <br></br>
 
 </details>
+
 
 <details>
   <summary> &nbsp; <b>Sharing Files with SMB </b></summary>
