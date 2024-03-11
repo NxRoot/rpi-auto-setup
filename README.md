@@ -33,12 +33,25 @@ Commands to setup a minimal raspbian installation with some useful features.
 </details>
 
 
-
 ### Update RPI
 ```bash
 sudo apt update
 ```
 
+# Raspbian Config
+```bash
+sudo raspi-config
+```
+<details>
+  <summary> &nbsp; <b>Enable Console Auto-Login</b></summary>
+
+1.  ### &nbsp; Choose --> System Options
+2.  ### &nbsp; Choose --> Boot / Auto Login
+3.  ### &nbsp; Choose --> Console Autologin
+4.  ### &nbsp; Select Finish, and reboot the Raspberry Pi.
+</details>
+
+<br></br>
 <br></br>
 # Host REST API
 > This will host a local server running on http://localhost:5001
@@ -196,6 +209,7 @@ npm run build
 </details>
 
 <br></br>
+<br></br>
 # Sharing Files with SMB
 
 ### Create Folder 
@@ -220,6 +234,7 @@ force directory mode = 0777
 browseable = yes
 ```
 
+<br></br>
 <br></br>
 # Open browser on boot
 
@@ -281,6 +296,7 @@ chromium-browser --kiosk "http://localhost:5001" \
 
 ```
 
+<br></br>
 <br></br>
 # Setup TFT Screen
 
