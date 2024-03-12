@@ -68,7 +68,7 @@ cd rpi-auto-setup
 # Usage
 ### Available options
 ```console
-sudo sh install --autologin=B2 --rest=node --chrome --smb --tft=MHS35 --reboot
+sudo sh install --autologin=B2 --rest=node --chrome --smb --reboot
 ```
 <details>
   <summary> &nbsp; <b>--hello</b></summary>
