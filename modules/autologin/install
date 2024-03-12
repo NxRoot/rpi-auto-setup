@@ -4,7 +4,7 @@ rpias=$2
 value=$3
 dir=$(dirname $0)
 
-USER=${SUDO_USER:-$(who -m | awk '{ print $1 }')}
+USER=$(who -m | awk '{ print $1 }')
 
 disable_raspi_config_at_boot() {
   if [ -e /etc/profile.d/raspi-config.sh ]; then
