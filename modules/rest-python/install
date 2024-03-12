@@ -25,7 +25,7 @@ python3 -m venv .venv
 file=/etc/rc.local
 search="exit 0"
 a="cd $root/pi-server"
-b=".venv/bin/flask --app server.py run &"
+b=".venv/bin/flask --app server.py run --no-debugger --host=0.0.0.0 -p 5001 &"
 
 # Remove exit 0
 sudo ex -s +"g/$search/d" -cwq $file
