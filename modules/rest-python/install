@@ -13,14 +13,15 @@ cat $dir/_server.txt >> $root/pi-server/server.py
 cd $root/pi-server
 
 # Create virtual environment
+apt-get install python3-venv -y
 python3 -m venv venv
 
 # Activate virtual environment
 source venv/bin/activate
 
 # Install requirements
-pip install flask
-pip install python-dotenv
+pip3 install flask
+pip3 install python-dotenv
 
 # Deactivate virtual environment
 source deactivate
@@ -29,7 +30,7 @@ source deactivate
 file=/etc/rc.local
 search="exit 0"
 a="cd $root/pi-server"
-b="$root/pi-server/venv/bin/flask --app $root/pi-server/server.py run --no-debugger &"
+b="$root/pi-server/venv/bin/flask --app $root/pi-server/server.py run --no-debugger -p 5001 &"
 
 # Remove exit 0
 sudo ex -s +"g/$search/d" -cwq $file
