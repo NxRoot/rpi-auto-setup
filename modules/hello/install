@@ -2,6 +2,7 @@
 root=$1
 rpias=$2
 value=$3
+dir=$(dirname $0)
 
 echo This is a test script
-echo [Hello] $root $rpias $value
+echo [Hello] $root $rpias $value $dir

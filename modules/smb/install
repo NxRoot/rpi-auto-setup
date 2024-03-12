@@ -2,10 +2,11 @@
 root=$1
 rpias=$2
 value=$3
+dir=$(dirname $0)
 
 sudo rm -rf $root/shared
 cd $rpias
 mkdir $root/shared
 sudo chmod -R 777 $root/shared
 sudo apt install -y samba samba-common-bin
-sudo cat _smb.txt >> /etc/samba/smb.conf
+sudo cat $dir/_smb.txt >> /etc/samba/smb.conf

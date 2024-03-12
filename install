@@ -24,17 +24,18 @@ for arg in "$@"; do
 
         key="${arg%%=*}"
         value="${arg#*=}"
+        strip="${key#*--}"
 
-        if [ -f "$mods/${key:2}/install" ]; then
+        if [ -f "$mods/$strip/install" ]; then
             echo 
-            echo "[${green}Installing${reset}] ${key:2} $value"
+            echo "[${green}Installing${reset}] $strip $value"
             echo 
-            sudo sh "$mods/${key:2}/install" $root $rpias $value
-        elif [ -f "$mods/${key:2}-$value/install" ]; then
+            sudo sh "$mods/$strip/install" $root $rpias $value
+        elif [ -f "$mods/$strip-$value/install" ]; then
             echo 
-            echo "[${green}Installing${reset}] ${key:2} $value"
+            echo "[${green}Installing${reset}] $strip $value"
             echo 
-            sudo sh "$mods/${key:2}-$value/install" $root $rpias $value
+            sudo sh "$mods/$strip-$value/install" $root $rpias $value
         fi
 
     else

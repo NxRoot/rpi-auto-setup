@@ -2,19 +2,19 @@
 root=$1
 rpias=$2
 value=$3
+dir=$(dirname $0)
 
 # Create folders
 sudo rm -rf $root/pi-server
 mkdir $root/pi-server
 
 # Install Node JS
-cd $rpias
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt-get install -y nodejs
 sudo npm install -g npm
 
 # Install Server
-cat _node.txt >> $root/pi-server/server.js
+cat $dir/_node.txt >> $root/pi-server/server.js
 cd $root/pi-server
 npm init -y
 npm i express
