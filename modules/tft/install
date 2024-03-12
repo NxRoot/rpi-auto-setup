@@ -29,6 +29,7 @@ git clone https://github.com/goodtft/LCD-show.git
 chmod -R 755 LCD-show
 cd LCD-show/
 sudo ./$value-show
+sudo mv /usr/share/X11/xorg.conf.d/99-fbturbo.conf ~
 
 # Remove if exist
 if [ "$aE" != "" ] && [ "$bE" != "" ]; then
