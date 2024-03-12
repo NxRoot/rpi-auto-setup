@@ -21,7 +21,7 @@ rpias=$(pwd)
 # Modules folder
 mods=./modules
 # Disable Rebooting
-chmod o-x /sbin/reboot
+sudo mv /sbin/reboot /sbin/reboot.disabled
 
 
 # Iterate arguments
@@ -61,9 +61,6 @@ for arg in "$@"; do
 
 done
 
-# Enable Rebooting
-chmod o+x /sbin/reboot
-
 # Print Success
 echo
 echo "[${green}Completed${reset}] RPI Auto-Setup" "$(printf '%s ' "$success")"
@@ -80,6 +77,9 @@ if [ "$failed" != "" ]; then
     echo "[${red}Failed${reset}]:" "$(printf '%s ' "$failed")"
     echo
 fi
+
+# Enable Reboot
+sudo mv /sbin/reboot.disabled /sbin/reboot
 
 # Reboot device
 if [ $reboot = true ]; then
