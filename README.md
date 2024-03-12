@@ -68,7 +68,7 @@ cd rpi-auto-setup
 # Usage
 ### Available options
 ```console
-sudo sh install --rest=node --chrome --smb --tft=MHS35
+sudo sh install --rest=node --chrome --smb --tft=MHS35 --reboot
 ```
 <details>
   <summary> &nbsp; <b>--hello</b></summary>
@@ -76,6 +76,15 @@ sudo sh install --rest=node --chrome --smb --tft=MHS35
   #### Test Script
   ```bash
   sudo sh install --hello
+  ```
+</details>
+
+<details>
+  <summary> &nbsp; <b>--reboot</b></summary>
+
+  #### Reboot after installation
+  ```bash
+  sudo sh install --reboot
   ```
 </details>
 

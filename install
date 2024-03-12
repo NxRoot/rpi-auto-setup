@@ -9,12 +9,19 @@ echo
 echo "[${yellow}Started${reset}] RPI Auto-Setup"
 echo
 
+success=()
+skipped=()
+failed=()
+
 # Root folder
 root=/home/pi
 # Setup folder
 rpias=$(pwd)
 # Modules folder
 mods=./modules
+# Disable Rebooting
+chmod o-x /sbin/reboot
+
 
 # Iterate arguments
 for arg in "$@"; do
@@ -31,21 +38,48 @@ for arg in "$@"; do
             echo "[${green}Installing${reset}] $strip $value"
             echo 
             sudo sh "$mods/$strip/install" $root $rpias $value
+            success+=($arg)
         elif [ -f "$mods/$strip-$value/install" ]; then
             echo 
             echo "[${green}Installing${reset}] $strip $value"
             echo 
             sudo sh "$mods/$strip-$value/install" $root $rpias $value
+            success+=($arg)
         fi
 
     else
         echo 
         echo "[${red}Error${reset}] Invalid arg: $arg"
         echo 
+        skipped+=($arg)
     fi
 
 done
 
+# Enable Rebooting
+chmod o+x /sbin/reboot
+
+# Print Success
 echo
-echo "[${green}Completed${reset}] RPI Auto-Setup"
+echo "[${green}Completed${reset}] RPI Auto-Setup" "$(printf '%s ' "${success[@]}")"
 echo
+
+# Print Skipped
+if [ ${#skipped[@]} -ne 0 ]; then
+    echo "[${yellow}Skipped${reset}]:" "$(printf '%s ' "${skipped[@]}")"
+    echo
+fi
+
+# Print Failed
+if [ ${#failed[@]} -ne 0 ]; then
+    echo "[${red}Failed${reset}]:" "$(printf '%s ' "${failed[@]}")"
+    echo
+fi
+
+# Reboot device
+if [[ $@ =~ "--reboot" ]]; then
+    echo Device will restart in 5 seconds.
+    echo
+    sleep 5000
+    sudo reboot
+fi
