@@ -247,7 +247,7 @@ sudo sh install --autologin=B2 --rest=node --chrome --smb --reboot
   
   ### Create virtual environment
   ```bash
-  python3 -m venv .venv
+  python3 -m venv venv
   ```
   
   ### Activate virtual environment
