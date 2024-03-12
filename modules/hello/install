@@ -1,0 +1,7 @@
+#!/bin/sh
+root=$1
+rpias=$2
+value=$3
+
+echo This is a test script
+echo [Hello] $root $rpias $value

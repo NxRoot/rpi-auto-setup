@@ -1,0 +1,11 @@
+#!/bin/sh
+root=$1
+rpias=$2
+value=$3
+
+sudo rm -rf $root/LCD-show
+cd $root
+git clone https://github.com/goodtft/LCD-show.git
+chmod -R 755 LCD-show
+cd LCD-show/
+sudo ./$value-show

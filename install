@@ -1,0 +1,50 @@
+#!/bin/sh
+
+reset='\033[0m'           # Reset
+red='\033[0;31m'          # Red
+green='\033[0;32m'        # Green
+yellow='\033[0;33m'       # Yellow
+
+echo
+echo "[${yellow}Started${reset}] RPI Auto-Setup"
+echo
+
+# Root folder
+root=/home/pi
+# Setup folder
+rpias=$(pwd)
+# Modules folder
+mods=./modules
+
+# Iterate arguments
+for arg in "$@"; do
+
+    # Check if arg starts with --
+    if [ "${arg#--}" != "$arg" ]; then
+
+        key="${arg%%=*}"
+        value="${arg#*=}"
+
+        if [ -f "$mods/${key:2}/install" ]; then
+            echo 
+            echo "[${green}Installing${reset}] ${key:2} $value"
+            echo 
+            sudo sh "$mods/${key:2}/install" $root $rpias $value
+        elif [ -f "$mods/${key:2}-$value/install" ]; then
+            echo 
+            echo "[${green}Installing${reset}] ${key:2} $value"
+            echo 
+            sudo sh "$mods/${key:2}-$value/install" $root $rpias $value
+        fi
+
+    else
+        echo 
+        echo "[${red}Error${reset}] Invalid arg: $arg"
+        echo 
+    fi
+
+done
+
+echo
+echo "[${green}Completed${reset}] RPI Auto-Setup"
+echo
