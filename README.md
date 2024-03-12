@@ -60,7 +60,7 @@ sudo raspi-config
 # Installation
 
 ### Install GIT 
-```bash
+```go
 sudo apt install -y git
 ```
 ### Clone Repo
@@ -72,7 +72,7 @@ cd rpi-auto-setup
 
 # Usage
 ### Available options
-```bash
+```console
 sudo sh install --rest=node --chrome --smb --tft=MHS35
 ```
 <details>
