@@ -87,6 +87,34 @@ sudo sh install --rest=node --chrome --smb --tft=MHS35
   ```
 </details>
 
+<details>
+  <summary> &nbsp; <b>--chrome</b></summary>
+
+  #### Run Browser on Boot
+  ```bash
+  sudo sh install --chrome
+  ```
+</details>
+
+<details>
+  <summary> &nbsp; <b>--smb</b></summary>
+
+  #### Host Shared Folder with Samba
+  ```bash
+  sudo sh install --smb
+  ```
+</details>
+
+<details>
+  <summary> &nbsp; <b>--tft</b></summary>
+
+  #### Setup TFT Screen
+  > Please read documentation to find your TFT model: [LCD-WIKI](http://www.lcdwiki.com/Main_Page)
+  ```bash
+  sudo sh install --tft=MHS35
+  ```
+</details>
+
 <br></br>
 # Manual Installation
 <details>
