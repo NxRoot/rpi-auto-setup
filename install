@@ -20,7 +20,8 @@ root=/home/pi
 rpias=$(pwd)
 # Modules folder
 mods=./modules
-# Disable Rebooting
+
+# Disable Reboot
 sudo mv /sbin/reboot /sbin/reboot.disabled
 
 

@@ -4,9 +4,40 @@ rpias=$2
 value=$3
 dir=$(dirname $0)
 
+# Install LCD-SHOW
 cd $root
 sudo rm -rf LCD-show
 git clone https://github.com/goodtft/LCD-show.git
 chmod -R 755 LCD-show
 cd LCD-show/
 sudo ./$value-show
+
+# Setup boot script
+file=/etc/rc.local
+search="exit 0"
+a="cd $root/pi-server"
+b="npm start &"
+
+# Find strings
+aE=$(grep -Fxq "$a" $file)
+bE=$(grep -Fxq "$b" $file)
+
+# Remove if exist
+if $aE && $bE; then
+
+    # Remove exit 0
+    sudo ex -s +"g/$search/d" -cwq $file
+
+    # Remove strings
+    sudo ex -s +"g/$a/d" -cwq $file
+    sudo ex -s +"g/$b/d" -cwq $file
+
+    # Cut last line
+    sudo sed -i '$d' $file
+
+    # Append lines
+    sudo echo $a >> $file
+    sudo echo $b >> $file
+    sudo echo $search >> $file
+
+fi
