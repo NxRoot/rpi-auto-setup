@@ -37,9 +37,6 @@ if $aE && $bE; then
     sudo ex -s +"g/$b/d" -cwq $file
 fi
 
-# Cut last line
-sudo sed -i '$d' $file
-
 # Append lines
 sudo echo $a >> $file
 sudo echo $b >> $file
