@@ -9,6 +9,7 @@ echo
 echo "[${yellow}Started${reset}] RPI Auto-Setup"
 echo
 
+reboot=false
 success=""
 skipped=""
 failed=""
@@ -50,6 +51,10 @@ for arg in "$@"; do
             success="$success $arg"
         fi
 
+        if [ "$key" = "--reboot" ]; then
+            reboot=true
+        fi
+
     else
         echo 
         echo "[${red}Error${reset}] Invalid arg: $arg"
@@ -64,23 +69,23 @@ chmod o+x /sbin/reboot
 
 # Print Success
 echo
-echo "[${green}Completed${reset}] RPI Auto-Setup" "$(printf '%s ' "${success[@]}")"
+echo "[${green}Completed${reset}] RPI Auto-Setup" "$(printf '%s ' "$success")"
 echo
 
 # Print Skipped
-if [ ${#skipped[@]} -ne 0 ]; then
-    echo "[${yellow}Skipped${reset}]:" "$(printf '%s ' "${skipped[@]}")"
+if [ "$skipped" != "" ]; then
+    echo "[${yellow}Skipped${reset}]:" "$(printf '%s ' "$skipped")"
     echo
 fi
 
 # Print Failed
-if [ ${#failed[@]} -ne 0 ]; then
-    echo "[${red}Failed${reset}]:" "$(printf '%s ' "${failed[@]}")"
+if [ "$failed" != "" ]; then
+    echo "[${red}Failed${reset}]:" "$(printf '%s ' "$failed")"
     echo
 fi
 
 # Reboot device
-if [[ $@ =~ "--reboot" ]]; then
+if [ $reboot = true ]; then
     echo Device will restart in 5 seconds.
     echo
     sleep 5000
