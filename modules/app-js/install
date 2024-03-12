@@ -1,0 +1,13 @@
+#!/bin/sh
+root=$1
+rpias=$2
+value=$3
+dir=$(dirname $0)
+
+# Create folders
+sudo rm -rf $root/pi-server/client
+mkdir $root/pi-server/client
+sudo chmod -R 777 $root/pi-server/client
+mkdir $root/pi-server/client/build
+sudo chmod -R 777 $root/pi-server/client/build
+sudo cat $dir/_root.txt > $root/pi-server/client/build/index.html
