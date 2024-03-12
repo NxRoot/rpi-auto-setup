@@ -59,16 +59,10 @@ sudo raspi-config
 
 # Installation
 
-### Install GIT 
 ```go
 sudo apt install -y git
-```
-### Clone Repo
-```bash
 git clone https://github.com/NxRoot/rpi-auto-setup.git
-cd rpi-auto-setup
 ```
-
 
 # Usage
 ### Available options
@@ -408,5 +402,4 @@ sudo sh install --rest=node --chrome --smb --tft=MHS35
   ```
 </details>
 
-<br></br>
 <br></br>
