@@ -1,0 +1,9 @@
+#!/bin/sh
+root=$1
+rpias=$2
+value=$3
+dir=$(dirname $0)
+
+if [ "$value" != "" ]; then
+    sudo raspi-config nonint do_boot_behaviour $value
+fi

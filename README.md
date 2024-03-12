@@ -68,7 +68,7 @@ cd rpi-auto-setup
 # Usage
 ### Available options
 ```console
-sudo sh install --rest=node --chrome --smb --tft=MHS35 --reboot
+sudo sh install --autologin=B2 --rest=node --chrome --smb --tft=MHS35 --reboot
 ```
 <details>
   <summary> &nbsp; <b>--hello</b></summary>
@@ -76,6 +76,25 @@ sudo sh install --rest=node --chrome --smb --tft=MHS35 --reboot
   #### Test Script
   ```bash
   sudo sh install --hello
+  ```
+</details>
+
+<details>
+  <summary> &nbsp; <b>--autologin</b></summary>
+
+  #### Configure boot mode
+  ```bash
+  # B1 - Console
+  sudo sh install --autologin=B1
+
+  # B2 - Console Autologin
+  sudo sh install --autologin=B2
+
+  # B3 - Desktop
+  sudo sh install --autologin=B3
+
+  # B4 - Desktop Autologin
+  sudo sh install --autologin=B4
   ```
 </details>
 
