@@ -8,22 +8,28 @@ dir=$(dirname $0)
 sudo rm -rf $root/pi-server
 mkdir $root/pi-server
 
-# Install Node JS
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-sudo apt-get install -y nodejs
-sudo npm install -g npm
-
 # Install Server
-cat $dir/_server.txt >> $root/pi-server/server.js
+cat $dir/_server.txt >> $root/pi-server/server.py
 cd $root/pi-server
-npm init -y
-npm i express
+
+# Create virtual environment
+python3 -m venv venv
+
+# Activate virtual environment
+source venv/bin/activate
+
+# Install requirements
+pip install flask
+pip install python-dotenv
+
+# Deactivate virtual environment
+source deactivate
 
 # Setup boot script
 file=/etc/rc.local
 search="exit 0"
 a="cd $root/pi-server"
-b="npm start &"
+b="$root/pi-server/venv/bin/flask --app $root/pi-server/server.py run --no-debugger &"
 
 # Remove exit 0
 sudo ex -s +"g/$search/d" -cwq $file
