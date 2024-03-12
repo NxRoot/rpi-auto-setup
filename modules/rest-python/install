@@ -7,6 +7,7 @@ dir=$(dirname $0)
 # Create folders
 sudo rm -rf $root/pi-server
 mkdir $root/pi-server
+sudo chmod -R 777 $root/pi-server
 
 # Install Server
 cat $dir/_server.txt >> $root/pi-server/server.py
@@ -14,23 +15,23 @@ cd $root/pi-server
 
 # Create virtual environment
 apt-get install python3-venv -y
-python3 -m venv venv
+python3 -m venv .venv
 
 # Activate virtual environment
-source venv/bin/activate
+source .venv/bin/activate
 
 # Install requirements
 pip3 install flask
 pip3 install python-dotenv
 
 # Deactivate virtual environment
-source deactivate
+deactivate
 
 # Setup boot script
 file=/etc/rc.local
 search="exit 0"
 a="cd $root/pi-server"
-b="$root/pi-server/venv/bin/flask --app $root/pi-server/server.py run --no-debugger -p 5001 &"
+b=".venv/bin/flask --app server.py run --no-debugger -p 5001 &"
 
 # Remove exit 0
 sudo ex -s +"g/$search/d" -cwq $file
