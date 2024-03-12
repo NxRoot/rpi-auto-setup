@@ -4,8 +4,8 @@ rpias=$2
 value=$3
 dir=$(dirname $0)
 
-sudo rm -rf $root/LCD-show
 cd $root
+sudo rm -rf LCD-show
 git clone https://github.com/goodtft/LCD-show.git
 chmod -R 755 LCD-show
 cd LCD-show/

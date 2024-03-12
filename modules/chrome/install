@@ -4,7 +4,6 @@ rpias=$2
 value=$3
 dir=$(dirname $0)
 
-cd $rpias
 sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox chromium-browser -y
 sudo cat $dir/_bash.txt > $root/.bash_profile
 sudo cat $dir/_xinit.txt > $root/.xinitrc
