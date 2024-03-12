@@ -102,6 +102,26 @@ sudo sh install --rest=node --chrome --smb --tft=MHS35
 </details>
 
 <details>
+  <summary> &nbsp; <b>--kali</b></summary>
+
+  #### Install Katoolin (Kali Tools Installer)
+  > Please read documentation: [Katoolin](https://github.com/LionSec/katoolin)
+  ```bash
+  sudo sh install --kali
+  ```
+</details>
+
+<details>
+  <summary> &nbsp; <b>--msf</b></summary>
+
+  #### Install Metasploit Framework
+  > Please read documentation: [Metasploit](https://www.metasploit.com/)
+  ```bash
+  sudo sh install --msf
+  ```
+</details>
+
+<details>
   <summary> &nbsp; <b>--smb</b></summary>
 
   #### Host Shared Folder with Samba
