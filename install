@@ -83,8 +83,5 @@ fi
 
 # Reboot device
 if [ $reboot = true ]; then
-    echo Device will restart in 5 seconds.
-    echo
-    sleep 5000
     sudo reboot
 fi
