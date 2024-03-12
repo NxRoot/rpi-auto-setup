@@ -1,5 +1,5 @@
 # RPI - Auto Setup
-Commands to setup a minimal raspbian installation with some useful features.
+Automated tool to setup a minimal raspbian installation with some useful features.
 
 
 |<img style="width: 300px;" src="https://i.pinimg.com/originals/48/e1/a0/48e1a037a65cf8208f841ab5fccd1ab8.jpg"/>|<img style="width: 300px;" src="https://cdn.sparkfun.com/assets/learn_tutorials/8/1/2/screen_04.png"/>|
