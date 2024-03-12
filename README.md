@@ -73,7 +73,7 @@ cd rpi-auto-setup
 # Usage
 ### Available options
 ```bash
-sudo sh install.sh --rest=node --chrome --smb --tft=MHS35
+sudo sh install --rest=node --chrome --smb --tft=MHS35
 ```
 <details>
   <summary> &nbsp; <b>Setup TFT Screen</b></summary>
@@ -82,7 +82,7 @@ sudo sh install.sh --rest=node --chrome --smb --tft=MHS35
 
 Select your TFT model
 ```bash
-sudo sh install.sh --tft=MHS35
+sudo sh install --tft=MHS35
 ```
 </details>
 
