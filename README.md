@@ -62,6 +62,7 @@ sudo raspi-config
 ```go
 sudo apt install -y git
 git clone https://github.com/NxRoot/rpi-auto-setup.git
+cd rpi-auto-setup
 ```
 
 # Usage
