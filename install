@@ -13,9 +13,6 @@ reboot=false
 success=""
 skipped=""
 failed=""
-unset success
-unset skipped
-unset failed
 
 # Root folder
 root=/home/pi
