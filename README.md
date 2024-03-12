@@ -76,12 +76,22 @@ cd rpi-auto-setup
 sudo sh install --rest=node --chrome --smb --tft=MHS35
 ```
 <details>
+  <summary> &nbsp; <b>--hello</b></summary>
+
+  #### Test Script
+  ```bash
+  sudo sh install --hello
+  ```
+</details>
+
+<details>
   <summary> &nbsp; <b>--rest</b></summary>
 
   #### Host REST API
   ```bash
   # Node JS
   sudo sh install --rest=node
+
   # Python
   sudo sh install --rest=python
   ```
