@@ -13,8 +13,8 @@ a="cd $root/pi-server"
 b="npm start &"
 
 # REST - Python
-c="cd $root/pi-server"
-d=".venv/bin/flask --app server.py run --no-debugger -p 5001 &"
+a="cd $root/pi-server"
+b=".venv/bin/flask --app server.py run --no-debugger --host=0.0.0.0 -p 5001 &"
 
 # Find strings
 aE=$(cat $file | grep "$a")
