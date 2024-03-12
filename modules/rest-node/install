@@ -23,7 +23,7 @@ npm i express
 file=/etc/rc.local
 search="exit 0"
 a="cd $root/pi-server"
-b="npm start"
+b="npm start &"
 
 # Remove exit 0
 sudo ex -s +"g/$search/d" -cwq $file
