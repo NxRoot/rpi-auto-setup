@@ -83,6 +83,7 @@ sudo sh install --rest=node --chrome --smb --tft=MHS35
   <summary> &nbsp; <b>--rest</b></summary>
 
   #### Host REST API
+  > This will host a local server running on http://localhost:5001
   ```bash
   # Node JS
   sudo sh install --rest=node
@@ -96,6 +97,7 @@ sudo sh install --rest=node --chrome --smb --tft=MHS35
   <summary> &nbsp; <b>--chrome</b></summary>
 
   #### Run Browser on Boot
+  > You must enable <b>Console Auto-Login</b> on the Raspbian Config.
   ```bash
   sudo sh install --chrome
   ```
@@ -125,6 +127,7 @@ sudo sh install --rest=node --chrome --smb --tft=MHS35
   <summary> &nbsp; <b>--smb</b></summary>
 
   #### Host Shared Folder with Samba
+  > Please read documentation: [Samba](https://www.jeffgeerling.com/blog/2021/htgwa-create-samba-smb-share-on-raspberry-pi)
   ```bash
   sudo sh install --smb
   ```
