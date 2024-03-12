@@ -4,6 +4,24 @@ rpias=$2
 value=$3
 dir=$(dirname $0)
 
+# Setup boot script
+file=/etc/rc.local
+search="exit 0"
+
+# REST - Node
+a="cd $root/pi-server"
+b="npm start &"
+
+# REST - Python
+c="cd $root/pi-server"
+d=".venv/bin/flask --app server.py run --no-debugger -p 5001 &"
+
+# Find strings
+aE=$(grep -Fxq "$a" $file)
+bE=$(grep -Fxq "$b" $file)
+cE=$(grep -Fxq "$c" $file)
+dE=$(grep -Fxq "$d" $file)
+
 # Install LCD-SHOW
 cd $root
 sudo rm -rf LCD-show
@@ -12,29 +30,25 @@ chmod -R 755 LCD-show
 cd LCD-show/
 sudo ./$value-show
 
-# Setup boot script
-file=/etc/rc.local
-search="exit 0"
-a="cd $root/pi-server"
-b="npm start &"
-
-# Find strings
-aE=$(grep -Fxq "$a" $file)
-bE=$(grep -Fxq "$b" $file)
-
 # Remove if exist
 if $aE && $bE; then
 
     # Remove exit 0
     sudo ex -s +"g/$search/d" -cwq $file
 
-    # Remove strings
-    sudo ex -s +"g/$a/d" -cwq $file
-    sudo ex -s +"g/$b/d" -cwq $file
-
     # Append lines
     sudo echo $a >> $file
     sudo echo $b >> $file
+    sudo echo $search >> $file
+
+elif $cE && $dE; then
+
+    # Remove exit 0
+    sudo ex -s +"g/$search/d" -cwq $file
+
+    # Append lines
+    sudo echo $c >> $file
+    sudo echo $d >> $file
     sudo echo $search >> $file
 
 fi
