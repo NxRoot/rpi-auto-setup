@@ -1,7 +1,14 @@
 #!/bin/sh
 
+reset='\033[0m'           # Reset
+red='\033[0;31m'          # Red
+green='\033[0;32m'        # Green
+yellow='\033[0;33m'       # Yellow
+blue='\033[0;34m'         # Blue
+purple='\033[0;35m'       # Purple
+
 echo
-echo RPI Auto-Setup
+echo -e "${green}RPI Auto-Setup${reset}"
 echo
 
 # Root folder
@@ -21,7 +28,7 @@ for arg in "$@"; do
         # Install TFT
         if [ $key = "--tft" ]; then
             if [ $key != $value ]; then
-                echo [Installing] $key
+                echo -e "[${green}Installing${reset}] $key"
                 sudo rm -rf $root/LCD-show
                 cd $root
                 git clone https://github.com/goodtft/LCD-show.git
@@ -39,7 +46,7 @@ for arg in "$@"; do
         # Install Node JS
         if [ $key = "--node" ]; then
             if [ $key != $value ]; then
-                echo [Installing] $key
+                echo -e "[${green}Installing${reset}] $key"
                 cd $rpias
                 curl -fsSL https://deb.nodesource.com/setup_$value.x | sudo -E bash -
                 sudo apt-get install -y nodejs
@@ -56,7 +63,7 @@ for arg in "$@"; do
         if [ $key = "--rest" ]; then
             if [ $key != $value ]; then
                 if [ $value = "node" ]; then
-                    echo [Installing] $key
+                    echo -e "[${green}Installing${reset}] $key"
 
                     sudo rm -rf $root/pi-server
                     mkdir $root/pi-server
@@ -83,10 +90,8 @@ for arg in "$@"; do
                         sudo ex -s +"g/$b/d" -cwq $file
                     fi
 
-                    # Cut lines
-                    total_lines=$(wc -l < "$file")
-                    lines_to_keep=$((total_lines - 1))
-                    head -n "$lines_to_keep" "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+                    # Cut last line
+                    sudo sed -i '$d' $file
 
                     # Append lines
                     sudo echo $a >> $file
@@ -103,7 +108,7 @@ for arg in "$@"; do
 
         # Install Samba
         if [ $key = "--smb" ]; then
-            echo [Installing] $key
+            echo -e "[${green}Installing${reset}] $key"
             sudo rm -rf $root/shared
             cd $rpias
             mkdir $root/shared
@@ -113,13 +118,13 @@ for arg in "$@"; do
         fi
 
         # Install Chromium
-        if [ $key = "--chrome" ]; then
-            echo [Installing] $key
+        if [ $key = "--browser" ]; then
+            echo -e "[${green}Installing${reset}] $key"
 
             cd $rpias
             sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox chromium-browser -y
-            sudo cat _bash.txt >> $root/.bash_profile
-            sudo cat _xinit.txt >> $root/.xinitrc
+            sudo cat _bash.txt > $root/.bash_profile
+            sudo cat _xinit.txt > $root/.xinitrc
         fi
 
     else
