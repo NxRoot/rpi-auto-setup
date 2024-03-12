@@ -9,9 +9,12 @@ echo
 echo "[${yellow}Started${reset}] RPI Auto-Setup"
 echo
 
-declare -A success.
-declare -A skipped.
-declare -A failed.
+success=""
+skipped=""
+failed=""
+unset success
+unset skipped
+unset failed
 
 # Root folder
 root=/home/pi
@@ -38,20 +41,20 @@ for arg in "$@"; do
             echo "[${green}Installing${reset}] $strip $value"
             echo 
             sudo sh "$mods/$strip/install" $root $rpias $value
-            success+=($arg)
+            success="$success $arg"
         elif [ -f "$mods/$strip-$value/install" ]; then
             echo 
             echo "[${green}Installing${reset}] $strip $value"
             echo 
             sudo sh "$mods/$strip-$value/install" $root $rpias $value
-            success+=($arg)
+            success="$success $arg"
         fi
 
     else
         echo 
         echo "[${red}Error${reset}] Invalid arg: $arg"
         echo 
-        skipped+=($arg)
+        skipped="$skipped $arg"
     fi
 
 done
