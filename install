@@ -9,9 +9,9 @@ echo
 echo "[${yellow}Started${reset}] RPI Auto-Setup"
 echo
 
-success=()
-skipped=()
-failed=()
+declare -a success=()
+declare -a skipped=()
+declare -a failed=()
 
 # Root folder
 root=/home/pi
