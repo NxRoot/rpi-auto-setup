@@ -19,12 +19,12 @@ mods=./modules
 # Iterate arguments
 for arg in "$@"; do
 
-    # Check if arg starts with --
-    if [ "${arg#--}" != "$arg" ]; then
+    key="${arg%%=*}"
+    value="${arg#*=}"
+    strip="${key#--}"
 
-        key="${arg%%=*}"
-        value="${arg#*=}"
-        strip="${key#*--}"
+    # Check if arg starts with --
+    if [ "$strip" != "$arg" ]; then
 
         if [ -f "$mods/$strip/install" ]; then
             echo 
