@@ -69,14 +69,29 @@ for arg in "$@"; do
 
                     file=/etc/rc.local
                     search="exit 0"
-                    newLine="cd $root/pi-server && npm start & cd .."
+                    a="cd $root/pi-server"
+                    b="npm start"
 
-                    # Remove "exit 0"
+                    # Remove exit 0
                     sudo ex -s +"g/$search/d" -cwq $file
 
-                    # Append line with "exit 0" in the end
-                    sudo echo "$newLine\n\n$search" >> $file
+                    aE=$(grep -Fxq "$a" $file)
+                    bE=$(grep -Fxq "$b" $file)
 
+                    if $aE && $bE; then
+                        sudo ex -s +"g/$a/d" -cwq $file
+                        sudo ex -s +"g/$b/d" -cwq $file
+                    fi
+
+                    # Cut lines
+                    total_lines=$(wc -l < "$file")
+                    lines_to_keep=$((total_lines - 1))
+                    head -n "$lines_to_keep" "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+
+                    # Append lines
+                    sudo echo $a >> $file
+                    sudo echo $b >> $file
+                    sudo echo $search >> $file
                 fi
             else
                 echo 
