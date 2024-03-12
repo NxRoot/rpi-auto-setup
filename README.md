@@ -1,4 +1,4 @@
-# [WIP] RPI - Auto Setup
+# RPI - Auto Setup
 Commands to setup a minimal raspbian installation with some useful features.
 
 
@@ -76,14 +76,15 @@ cd rpi-auto-setup
 sudo sh install --rest=node --chrome --smb --tft=MHS35
 ```
 <details>
-  <summary> &nbsp; <b>Setup TFT Screen</b></summary>
+  <summary> &nbsp; <b>--rest</b></summary>
 
-<br>
-
-Select your TFT model
-```bash
-sudo sh install --tft=MHS35
-```
+  #### Host REST API
+  ```bash
+  # Node JS
+  sudo sh install --rest=node
+  # Python
+  sudo sh install --rest=python
+  ```
 </details>
 
 <br></br>
