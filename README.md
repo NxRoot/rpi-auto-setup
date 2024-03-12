@@ -76,7 +76,7 @@ sh install --autologin=B2 --rest=node --chrome --smb --reboot
 
   #### Test Script
   ```bash
-  sudo sh install --hello
+  sh install --hello
   ```
 </details>
 
@@ -86,16 +86,16 @@ sh install --autologin=B2 --rest=node --chrome --smb --reboot
   #### Configure boot mode
   ```bash
   # B1 - Console
-  sudo sh install --autologin=B1
+  sh install --autologin=B1
 
   # B2 - Console Autologin
-  sudo sh install --autologin=B2
+  sh install --autologin=B2
 
   # B3 - Desktop
-  sudo sh install --autologin=B3
+  sh install --autologin=B3
 
   # B4 - Desktop Autologin
-  sudo sh install --autologin=B4
+  sh install --autologin=B4
   ```
 </details>
 
@@ -104,7 +104,7 @@ sh install --autologin=B2 --rest=node --chrome --smb --reboot
 
   #### Reboot after installation
   ```bash
-  sudo sh install --reboot
+  sh install --reboot
   ```
 </details>
 
@@ -115,10 +115,24 @@ sh install --autologin=B2 --rest=node --chrome --smb --reboot
   > This will host a local server running on http://localhost:5001
   ```bash
   # Node JS
-  sudo sh install --rest=node
+  sh install --rest=node
 
   # Python
-  sudo sh install --rest=python
+  sh install --rest=python
+  ```
+</details>
+
+<details>
+  <summary> &nbsp; <b>--app</b></summary>
+
+  #### Host Web App
+  > This will add a <b>web application</b> to a server hosted by the `--rest` command
+  ```bash
+  # Javascript
+  sh install --app=js
+
+  # React
+  sh install --app=react
   ```
 </details>
 
@@ -128,7 +142,7 @@ sh install --autologin=B2 --rest=node --chrome --smb --reboot
   #### Run Browser on Boot
   > You must enable <b>Console Auto-Login</b> on the Raspbian Config.
   ```bash
-  sudo sh install --chrome
+  sh install --chrome
   ```
 </details>
 
@@ -138,7 +152,7 @@ sh install --autologin=B2 --rest=node --chrome --smb --reboot
   #### Install Katoolin (Kali Tools Installer)
   > Please read documentation: [Katoolin](https://github.com/LionSec/katoolin)
   ```bash
-  sudo sh install --kali
+  sh install --kali
   ```
 </details>
 
@@ -148,7 +162,7 @@ sh install --autologin=B2 --rest=node --chrome --smb --reboot
   #### Install Metasploit Framework
   > Please read documentation: [Metasploit](https://www.metasploit.com/)
   ```bash
-  sudo sh install --msf
+  sh install --msf
   ```
 </details>
 
@@ -158,7 +172,7 @@ sh install --autologin=B2 --rest=node --chrome --smb --reboot
   #### Host Shared Folder with Samba
   > Please read documentation: [Samba](https://www.jeffgeerling.com/blog/2021/htgwa-create-samba-smb-share-on-raspberry-pi)
   ```bash
-  sudo sh install --smb
+  sh install --smb
   ```
 </details>
 
@@ -168,7 +182,7 @@ sh install --autologin=B2 --rest=node --chrome --smb --reboot
   #### Setup TFT Screen
   > Please read documentation to find your TFT model: [LCD-WIKI](http://www.lcdwiki.com/Main_Page)
   ```bash
-  sudo sh install --tft=MHS35
+  sh install --tft=MHS35
   ```
 </details>
 
