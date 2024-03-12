@@ -33,7 +33,7 @@ aE=$(cat $file | grep "$a")
 bE=$(cat $file | grep "$b")
 
 # Remove if exist
-if [ $aE != "" ] && [ $bE != "" ]; then
+if [ "$aE" != "" ] && [ "$bE" != "" ]; then
     sudo ex -s +"g/$a/d" -cwq $file
     sudo ex -s +"g/$b/d" -cwq $file
 fi

@@ -31,7 +31,7 @@ cd LCD-show/
 sudo ./$value-show
 
 # Remove if exist
-if [ $aE != "" ] && [ $bE != "" ]; then
+if [ "$aE" != "" ] && [ "$bE" != "" ]; then
 
     # Remove exit 0
     sudo ex -s +"g/$search/d" -cwq $file
@@ -41,7 +41,7 @@ if [ $aE != "" ] && [ $bE != "" ]; then
     sudo echo $b >> $file
     sudo echo $search >> $file
 
-elif [ $cE != "" ] && [ $dE != "" ]; then
+elif [ "$cE" != "" ] && [ "$dE" != "" ]; then
 
     # Remove exit 0
     sudo ex -s +"g/$search/d" -cwq $file
