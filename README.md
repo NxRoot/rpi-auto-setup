@@ -69,7 +69,7 @@ cd rpi-auto-setup
 # Usage
 ### Available options
 ```console
-sh install --autologin=B2 --rest=node --app=react --chrome --smb --reboot
+sh install --autologin=B2 --rest=node --app=js --chrome --smb --reboot
 ```
 <details>
   <summary> &nbsp; <b>--hello</b></summary>
