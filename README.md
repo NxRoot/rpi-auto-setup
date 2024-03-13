@@ -2,7 +2,7 @@
 Automated tool to setup a minimal raspbian installation with some useful features.
 
 
-|<img style="width: 280px;" src="https://i.pinimg.com/originals/48/e1/a0/48e1a037a65cf8208f841ab5fccd1ab8.jpg"/>|<img style="width: 280px;" src="https://cdn.sparkfun.com/assets/learn_tutorials/8/1/2/screen_04.png"/>|<img style="width: 280px;" src="https://i.pinimg.com/originals/89/d0/b3/89d0b3b1f97a0954b1226b3de2b7fdd0.jpg"/>|
+|<img style="width: 280px;" src="https://i.pinimg.com/originals/21/89/aa/2189aa597d68c701564159188f78ac53.jpg"/>|<img style="width: 280px;" src="https://cdn.sparkfun.com/assets/learn_tutorials/8/1/2/screen_04.png"/>|<img style="width: 280px;" src="https://i.pinimg.com/originals/89/d0/b3/89d0b3b1f97a0954b1226b3de2b7fdd0.jpg"/>|
 |--|--|--|
 
 # First Steps
