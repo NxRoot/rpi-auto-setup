@@ -58,7 +58,6 @@ cd rpi-auto-setup
 ```
 
 ## Usage
-### Available options
 ```console
 sh install --autologin=B2 --rest=node --app=js --chrome --smb --reboot
 ```
@@ -177,8 +176,9 @@ sh install --autologin=B2 --rest=node --app=js --chrome --smb --reboot
   ```
 </details>
 
-<br></br>
-# Manual Installation
+&nbsp;
+
+## Documentation
 <details>
   <summary> &nbsp; <b>Host REST API + UI</b></summary>
 
