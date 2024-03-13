@@ -18,12 +18,14 @@ disable_raspi_config_at_boot() {
 
 # B1 - Console
 if [ "$value" = "B1" ]; then
+    echo "Boot mode changed to: $value - Console"
     systemctl --quiet set-default multi-user.target
     rm -f /etc/systemd/system/getty@tty1.service.d/autologin.conf
 fi
 
 # B2 - Console Autologin
 if [ "$value" = "B2" ]; then
+    echo "Boot mode changed to: $value - Console Autologin"
     systemctl --quiet set-default multi-user.target
     cat > /etc/systemd/system/getty@tty1.service.d/autologin.conf << EOF
 [Service]
@@ -35,6 +37,7 @@ fi
 # B3 - Desktop
 if [ "$value" = "B3" ]; then
     if [ -e /etc/init.d/lightdm ]; then
+        echo "Boot mode changed to: $value - Desktop"
         systemctl --quiet set-default graphical.target
         rm -f /etc/systemd/system/getty@tty1.service.d/autologin.conf
         sed /etc/lightdm/lightdm.conf -i -e "s/^autologin-user=.*/#autologin-user=/"
@@ -49,6 +52,7 @@ fi
 # B4 - Desktop Autologin
 if [ "$value" = "B4" ]; then
     if [ -e /etc/init.d/lightdm ]; then
+        echo "Boot mode changed to: $value - Desktop Autologin"
         systemctl --quiet set-default graphical.target
         cat > /etc/systemd/system/getty@tty1.service.d/autologin.conf << EOF
 [Service]

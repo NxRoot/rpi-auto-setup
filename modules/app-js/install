@@ -11,3 +11,4 @@ sudo chmod -R 777 $root/pi-server/client
 mkdir $root/pi-server/client/build
 sudo chmod -R 777 $root/pi-server/client/build
 sudo cat $dir/_root.txt > $root/pi-server/client/build/index.html
+echo "Files copied to $root/pi-server/client"
