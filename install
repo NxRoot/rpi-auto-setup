@@ -39,13 +39,13 @@ for arg in "$@"; do
             echo 
             echo "[${green}Installing${reset}] $strip $value"
             echo 
-            sudo sh "$mods/$strip/install" $root $rpias $value
+            sudo bash "$mods/$strip/install" $root $rpias $value
             success="$success $arg"
         elif [ -f "$mods/$strip-$value/install" ]; then
             echo 
             echo "[${green}Installing${reset}] $strip $value"
             echo 
-            sudo sh "$mods/$strip-$value/install" $root $rpias $value
+            sudo bash "$mods/$strip-$value/install" $root $rpias $value
             success="$success $arg"
         fi
 
