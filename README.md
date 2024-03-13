@@ -1,11 +1,21 @@
-# RPI - Auto Setup
+# RPI - Auto Setup 
 Automated tool to setup a minimal raspbian installation with some useful features.
 
 
 |<img style="width: 280px;" src="https://i.pinimg.com/originals/21/89/aa/2189aa597d68c701564159188f78ac53.jpg"/>|<img style="width: 280px;" src="https://cdn.sparkfun.com/assets/learn_tutorials/8/1/2/screen_04.png"/>|<img style="width: 280px;" src="https://i.pinimg.com/originals/89/d0/b3/89d0b3b1f97a0954b1226b3de2b7fdd0.jpg"/>|
 |--|--|--|
 
-# First Steps
+## Features
+
+* 🧬 &nbsp;Install multiple tools with a single command.
+* ✍️ &nbsp;Create your own scripts to install custom tools.
+* ✅ &nbsp;Host pre-configured web servers and applications.
+* 🚀 &nbsp;Extremely lightweight and ultra-flexible configuration.
+
+
+&nbsp;
+
+## First Steps
 <details>
   <summary> &nbsp; <b>Flash SD Card with Raspbian OS</b></summary>
 
@@ -36,28 +46,9 @@ Automated tool to setup a minimal raspbian installation with some useful feature
 
 </details>
 
+&nbsp;
 
-### Update RPI
-```bash
-sudo apt update
-```
-
-### Raspbian Config
-```bash
-sudo raspi-config
-```
-<details>
-  <summary> &nbsp; <b>Enable Console Auto-Login</b></summary>
-
-1.  ### &nbsp; Choose --> `System Options`
-2.  ### &nbsp; Choose --> `Boot / Auto Login`
-3.  ### &nbsp; Choose --> `Console Autologin`
-4.  ### &nbsp; Choose --> `Finish`
-</details>
-
-<br></br>
-
-# Installation
+## Installation
 
 ```go
 sudo rm -rf rpi-auto-setup
@@ -66,7 +57,7 @@ git clone https://github.com/NxRoot/rpi-auto-setup.git
 cd rpi-auto-setup
 ```
 
-# Usage
+## Usage
 ### Available options
 ```console
 sh install --autologin=B2 --rest=node --app=js --chrome --smb --reboot
