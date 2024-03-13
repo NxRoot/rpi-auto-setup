@@ -9,18 +9,14 @@ file=/etc/rc.local
 search="exit 0"
 
 # REST - Node
-a="cd $root/pi-server"
-b="npm start &"
+a="cd $root/pi-server && npm start &"
 
 # REST - Python
-a="cd $root/pi-server"
-b=".venv/bin/flask --app server.py run --no-debugger --host=0.0.0.0 -p 5001 &"
+b="cd $root/pi-server && .venv/bin/flask --app server.py run --no-debugger --host=0.0.0.0 -p 5001 &"
 
 # Find strings
 aE=$(cat $file | grep "$a")
 bE=$(cat $file | grep "$b")
-cE=$(cat $file | grep "$c")
-dE=$(cat $file | grep "$d")
 
 # Install LCD-SHOW
 cd $root
@@ -32,7 +28,7 @@ sudo ./$value-show
 sudo mv /usr/share/X11/xorg.conf.d/99-fbturbo.conf ~
 
 # Remove if exist
-if [ "$aE" != "" ] && [ "$bE" != "" ]; then
+if [ "$aE" != "" ]; then
 
     # Remove exit 0
     sudo ex -s +"g/$search/d" -cwq $file
@@ -42,7 +38,7 @@ if [ "$aE" != "" ] && [ "$bE" != "" ]; then
     sudo echo $b >> $file
     sudo echo $search >> $file
 
-elif [ "$cE" != "" ] && [ "$dE" != "" ]; then
+elif [ "$bE" != "" ]; then
 
     # Remove exit 0
     sudo ex -s +"g/$search/d" -cwq $file

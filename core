@@ -1,0 +1,10 @@
+#!/bin/bash
+
+REPLACE_LINE() {
+    file_content=$(<$1)
+    file_content=${file_content//$2/$3}
+    echo "$file_content" > $1
+    if [ $4 = true ]; then
+        sudo sed -i '$d' $1
+    fi
+}
