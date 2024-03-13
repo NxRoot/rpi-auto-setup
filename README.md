@@ -127,6 +127,16 @@ sh install --autologin=B2 --rest=node --app=js --chrome --smb --reboot
 </details>
 
 <details>
+  <summary> &nbsp; <b>--sherlock</b></summary>
+
+  #### Install Sherlock OSINT
+  > Please read documentation: [Sherlock](https://github.com/sherlock-project/sherlock)
+  ```bash
+  sh install --sherlock
+  ```
+</details>
+
+<details>
   <summary> &nbsp; <b>--chrome</b></summary>
 
   #### Run Browser on Boot
