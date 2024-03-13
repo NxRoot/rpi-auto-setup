@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 root=$1
 rpias=$2
 value=$3
@@ -32,6 +32,7 @@ b="cd $root/pi-server && .venv/bin/flask --app server.py run --no-debugger --hos
 sudo ex -s +"g/$search/d" -cwq $file
 
 # Replace existent
+cd $rpias
 source core
 REPLACE_LINE "$file" "$a"
 REPLACE_LINE "$file" "$b"
