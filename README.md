@@ -50,16 +50,17 @@ Automated tool to setup a minimal raspbian installation with some useful feature
 
 ## Installation
 
-```go
-sudo rm -rf rpi-auto-setup
+```tsx
 sudo apt install -y git
-git clone https://github.com/NxRoot/rpi-auto-setup.git
-cd rpi-auto-setup
+sudo rm -rf ~/rpia
+sudo git clone https://github.com/NxRoot/rpi-auto-setup.git ~/rpia
+sudo cp -R ~/rpia/install /usr/local/bin/rpia
+sudo chmod +x /usr/local/bin/rpia
 ```
 
 ## Usage
 ```console
-sh install --autologin=B2 --rest=node --app=js --chrome --smb --reboot
+rpia --autologin=B2 --rest=node --app=js --chrome --smb --reboot
 ```
 <details>
   <summary> &nbsp; <b>--hello</b></summary>

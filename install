@@ -15,11 +15,11 @@ skipped=""
 failed=""
 
 # Root folder
-root=/home/pi
+root=~
 # Setup folder
-rpias=$(pwd)
+rpias=$root/rpia
 # Modules folder
-mods=./modules
+mods=$rpias/modules
 
 # Disable Reboot
 sudo mv /sbin/reboot /sbin/reboot.disabled
