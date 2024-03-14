@@ -60,7 +60,7 @@ for arg in "$@"; do
             success="$success $arg"
         else
             echo 
-            echo "[${red}Error${reset}] Invalid arg: $arg"
+            echo "[${red}Failed${reset}] Invalid arg: $arg"
             skipped="$skipped $arg"
         fi
 
@@ -70,7 +70,7 @@ for arg in "$@"; do
 
     else
         echo 
-        echo "[${red}Error${reset}] Invalid arg: $arg"
+        echo "[${red}Failed${reset}] Invalid arg: $arg"
         echo 
         skipped="$skipped $arg"
     fi
