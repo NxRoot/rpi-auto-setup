@@ -4,9 +4,20 @@ reset='\033[0m'           # Reset
 red='\033[0;31m'          # Red
 green='\033[0;32m'        # Green
 yellow='\033[0;33m'       # Yellow
+purple='\033[0;35m'       # Purple
+
+if [ $# = 0 ]; then
+    echo
+    echo "${yellow}You must specify the options to execute.${reset}"
+    echo
+    echo "Example: ${purple}rpia${reset} --autologin=B2 --server=node --client=js --chrome --smb --reboot"
+    echo
+    echo
+    exit 0
+fi
 
 echo
-echo "[${yellow}Started${reset}] RPI Auto-Setup"
+echo "[${purple}Started${reset}] RPI Auto-Setup"
 echo
 
 reboot=false
@@ -47,6 +58,10 @@ for arg in "$@"; do
             echo 
             sudo bash "$mods/$strip-$value/install" $root $rpias $value
             success="$success $arg"
+        else
+            echo 
+            echo "[${red}Error${reset}] Invalid arg: $arg"
+            skipped="$skipped $arg"
         fi
 
         if [ "$key" = "--reboot" ]; then
