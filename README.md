@@ -36,7 +36,7 @@ Automated tool to setup a minimal raspbian installation with some useful feature
   <summary> &nbsp; <b>Connect to device using SSH</b></summary>
 
 1. ### &nbsp; Open terminal on a pc in the same network
-2. ### &nbsp; Find the IP address of your RPI (Windows)
+2. ### &nbsp; Find the IP address of your RPI
     ```bash
     nslookup raspberrypi
     ```
