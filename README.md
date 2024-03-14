@@ -67,7 +67,7 @@ rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
 
   #### Test Script
   ```bash
-  sh install --hello
+  rpia --hello
   ```
 </details>
 
@@ -77,16 +77,16 @@ rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
   #### Configure boot mode
   ```bash
   # B1 - Console
-  sh install --autologin=B1
+  rpia --autologin=B1
 
   # B2 - Console Autologin
-  sh install --autologin=B2
+  rpia --autologin=B2
 
   # B3 - Desktop
-  sh install --autologin=B3
+  rpia --autologin=B3
 
   # B4 - Desktop Autologin
-  sh install --autologin=B4
+  rpia --autologin=B4
   ```
 </details>
 
@@ -95,7 +95,7 @@ rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
 
   #### Reboot after installation
   ```bash
-  sh install --reboot
+  rpia --reboot
   ```
 </details>
 
@@ -106,10 +106,10 @@ rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
   > This will host a local server running on http://localhost:5001
   ```bash
   # Node JS
-  sh install --server=node
+  rpia --server=node
 
   # Python
-  sh install --server=python
+  rpia --server=python
   ```
 </details>
 
@@ -120,10 +120,10 @@ rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
   > This will add a <b>web application</b> to a server hosted by the `--server` command
   ```bash
   # Javascript
-  sh install --client=js
+  rpia --client=js
 
   # React
-  sh install --client=react
+  rpia --client=react
   ```
 </details>
 
@@ -133,7 +133,7 @@ rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
   #### Install Sherlock OSINT
   > Please read documentation: [Sherlock](https://github.com/sherlock-project/sherlock)
   ```bash
-  sh install --sherlock
+  rpia --sherlock
   ```
 </details>
 
@@ -143,7 +143,7 @@ rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
   #### Run Browser on Boot
   > You must enable <b>Console Auto-Login</b> on the Raspbian Config.
   ```bash
-  sh install --chrome
+  rpia --chrome
   ```
 </details>
 
@@ -153,7 +153,7 @@ rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
   #### Install Katoolin (Kali Tools Installer)
   > Please read documentation: [Katoolin](https://github.com/LionSec/katoolin)
   ```bash
-  sh install --kali
+  rpia --kali
   ```
 </details>
 
@@ -163,7 +163,7 @@ rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
   #### Install Metasploit Framework
   > Please read documentation: [Metasploit](https://www.metasploit.com/)
   ```bash
-  sh install --msf
+  rpia --msf
   ```
 </details>
 
@@ -173,7 +173,7 @@ rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
   #### Host Shared Folder with Samba
   > Please read documentation: [Samba](https://www.jeffgeerling.com/blog/2021/htgwa-create-samba-smb-share-on-raspberry-pi)
   ```bash
-  sh install --smb
+  rpia --smb
   ```
 </details>
 
@@ -183,7 +183,7 @@ rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
   #### Setup TFT Screen
   > Please read documentation to find your TFT model: [LCD-WIKI](http://www.lcdwiki.com/Main_Page)
   ```bash
-  sh install --tft=MHS35
+  rpia --tft=MHS35
   ```
 </details>
 
