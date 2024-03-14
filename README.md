@@ -60,7 +60,7 @@ sudo chmod +x /usr/local/bin/rpia
 
 ## Usage
 ```console
-rpia --autologin=B2 --rest=node --app=js --chrome --smb --reboot
+rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
 ```
 <details>
   <summary> &nbsp; <b>--hello</b></summary>
@@ -100,30 +100,30 @@ rpia --autologin=B2 --rest=node --app=js --chrome --smb --reboot
 </details>
 
 <details>
-  <summary> &nbsp; <b>--rest</b></summary>
+  <summary> &nbsp; <b>--server</b></summary>
 
   #### Host REST API
   > This will host a local server running on http://localhost:5001
   ```bash
   # Node JS
-  sh install --rest=node
+  sh install --server=node
 
   # Python
-  sh install --rest=python
+  sh install --server=python
   ```
 </details>
 
 <details>
-  <summary> &nbsp; <b>--app</b></summary>
+  <summary> &nbsp; <b>--client</b></summary>
 
   #### Host Web App
-  > This will add a <b>web application</b> to a server hosted by the `--rest` command
+  > This will add a <b>web application</b> to a server hosted by the `--server` command
   ```bash
   # Javascript
-  sh install --app=js
+  sh install --client=js
 
   # React
-  sh install --app=react
+  sh install --client=react
   ```
 </details>
 
