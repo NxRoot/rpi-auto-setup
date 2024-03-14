@@ -1,9 +1,10 @@
 # RPI - Auto Setup 
 Automated tool to setup a minimal raspbian installation with some useful features.
 
-
-|<img style="width: 280px;" src="https://i.pinimg.com/originals/21/89/aa/2189aa597d68c701564159188f78ac53.jpg"/>|<img style="width: 280px;" src="https://cdn.sparkfun.com/assets/learn_tutorials/8/1/2/screen_04.png"/>|<img style="width: 280px;" src="https://i.pinimg.com/originals/d3/1d/70/d31d70178a86423619604b315f2d9984.jpg"/>|
+|TFT Screen|Script Execution|Web Applications|
 |--|--|--|
+|<img style="width: 280px;" src="https://i.pinimg.com/originals/21/89/aa/2189aa597d68c701564159188f78ac53.jpg"/>|<img style="width: 280px;" src="https://cdn.sparkfun.com/assets/learn_tutorials/8/1/2/screen_04.png"/>|<img style="width: 280px;" src="https://i.pinimg.com/originals/d3/1d/70/d31d70178a86423619604b315f2d9984.jpg"/>|
+
 
 ## Features
 
