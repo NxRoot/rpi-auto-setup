@@ -21,6 +21,7 @@ echo "[${purple}Started${reset}] RPI Auto-Setup"
 echo
 
 reboot=false
+destroy=false
 success=""
 skipped=""
 failed=""
@@ -52,20 +53,27 @@ for arg in "$@"; do
             echo 
             sudo bash "$mods/$strip/install" $root $rpias $value
             success="$success $arg"
+
         elif [ -f "$mods/$strip-$value/install" ]; then
             echo 
             echo "[${green}Installing${reset}] $strip $value"
             echo 
             sudo bash "$mods/$strip-$value/install" $root $rpias $value
             success="$success $arg"
+
         else
+            if [ "$key" = "--reboot" ]; then
+                reboot=true
+                continue
+            fi
+            if [ "$key" = "--destroy" ]; then
+                destroy=true
+                continue
+            fi
+
             echo 
             echo "[${red}Failed${reset}] Invalid arg: $arg"
             skipped="$skipped $arg"
-        fi
-
-        if [ "$key" = "--reboot" ]; then
-            reboot=true
         fi
 
     else
@@ -96,6 +104,12 @@ fi
 
 # Enable Reboot
 sudo mv /sbin/reboot.disabled /sbin/reboot
+
+# Destroy files
+if [ $destroy = true ]; then
+    sudo rm -rf $rpias
+    sudo rm -rf /usr/local/bin/rpia
+fi
 
 # Reboot device
 if [ $reboot = true ]; then

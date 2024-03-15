@@ -101,6 +101,15 @@ rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
 </details>
 
 <details>
+  <summary> &nbsp; <b>--reboot</b></summary>
+
+  #### Remove files after installation
+  ```bash
+  rpia --destroy
+  ```
+</details>
+
+<details>
   <summary> &nbsp; <b>--server</b></summary>
 
   #### Host REST API
