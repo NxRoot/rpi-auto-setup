@@ -101,7 +101,7 @@ rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
 </details>
 
 <details>
-  <summary> &nbsp; <b>--reboot</b></summary>
+  <summary> &nbsp; <b>--destroy</b></summary>
 
   #### Remove files after installation
   ```bash
