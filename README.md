@@ -54,7 +54,7 @@ Automated tool to setup a minimal raspbian installation with some useful feature
 ```tsx
 sudo apt install -y git
 sudo rm -rf ~/rpia
-sudo git clone https://github.com/NxRoot/rpi-auto-setup.git ~/rpia
+git clone https://github.com/NxRoot/rpi-auto-setup.git ~/rpia
 sudo cp ~/rpia/install /usr/local/bin/rpia
 sudo chmod +x /usr/local/bin/rpia
 ```
