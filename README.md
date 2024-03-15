@@ -162,7 +162,7 @@ rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
   <summary> &nbsp; <b>--msf</b></summary>
 
   #### Install Metasploit Framework
-  > Please read documentation: [Metasploit](https://www.metasploit.com/)
+  > Please read documentation: [Metasploit](https://docs.metasploit.com/docs/using-metasploit/basics/using-metasploit.html)
   ```bash
   rpia --msf
   ```
