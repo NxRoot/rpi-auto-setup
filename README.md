@@ -140,8 +140,10 @@ rpia --autologin=B2 --server=node --client=js --splash=off --chrome --smb --rebo
 <details>
   <summary> &nbsp; <b>--client</b></summary>
 
-  #### Host Web App
-  > This will add a <b>web application</b> to a server hosted by the `--server` command
+  #### Host Web App 
+  > This will add a <b>web application</b> to a server hosted by the `--server` argument.<br>
+  > This can only be used after `--server`.
+  
   ```bash
   # Javascript
   rpia --client=js
