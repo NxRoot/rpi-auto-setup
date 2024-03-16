@@ -7,18 +7,17 @@ config=/boot/config.txt
 
 if [ "$value" = "on" ]; then
     source $rpias/core
-    REPLACE_LINE "$config" "enable_uart="
-    REPLACE_LINE "$config" "disable_splash="
-    REPLACE_LINE "$config" "avoid_warnings="
+    REPLACE_LINE "$config" "enable_uart=0"
+    REPLACE_LINE "$config" "disable_splash=1"
+    REPLACE_LINE "$config" "avoid_warnings=2"
 
     echo "enable_uart=1" >> $config
     echo "disable_splash=0" >> $config
 
 elif [ "$value" = "off" ]; then
     source $rpias/core
-    REPLACE_LINE "$config" "enable_uart="
-    REPLACE_LINE "$config" "disable_splash="
-    REPLACE_LINE "$config" "avoid_warnings="
+    REPLACE_LINE "$config" "enable_uart=1"
+    REPLACE_LINE "$config" "disable_splash=0"
 
     echo "enable_uart=0" >> $config
     echo "disable_splash=1" >> $config
