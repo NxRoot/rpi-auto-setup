@@ -170,7 +170,11 @@ rpia --autologin=B2 --server=node --client=js --splash=off --chrome --smb --rebo
   #### Run Browser on Boot
   > You must enable <b>Console Auto-Login</b> on the Raspbian Config.
   ```bash
+  # Open localhost
   rpia --chrome
+
+  # Open specific URL
+  rpia --chrome=https://youtube.com
   ```
 </details>
 
