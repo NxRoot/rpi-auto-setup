@@ -1,6 +1,6 @@
 
 [shared]
-path=~/shared
+path=/home/pi/shared
 public = yes
 read only = no
 guest only = yes

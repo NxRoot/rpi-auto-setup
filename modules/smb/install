@@ -9,3 +9,8 @@ mkdir $root/shared
 sudo chmod -R 777 $root/shared
 sudo apt install -y samba samba-common-bin
 sudo cat $dir/_smb.txt >> /etc/samba/smb.conf
+
+if [ "$value" != "" ]; then
+    source $rpias/core
+    REPLACE_LINE "/etc/samba/smb.conf" "/home/pi/shared" "$value"
+fi
