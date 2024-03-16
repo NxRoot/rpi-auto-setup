@@ -1,2 +1,0 @@
-enable_uart=1
-disable_splash=0
