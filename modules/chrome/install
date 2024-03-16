@@ -8,3 +8,8 @@ sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xini
 sudo mv /usr/share/X11/xorg.conf.d/99-fbturbo.conf ~
 sudo cat $dir/_bash.txt > $root/.bash_profile
 sudo cat $dir/_xinit.txt > $root/.xinitrc
+
+if [ "$value" != "--chrome" ]; then
+    source $rpias/core
+    REPLACE_LINE "$root/.xinitrc" "http://localhost:5001" "$value"
+fi
