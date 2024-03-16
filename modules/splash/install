@@ -7,11 +7,22 @@ config=/boot/config.txt
 
 if [ "$value" = "on" ]; then
     source $rpias/core
-    WRITE_CONFIG "$dir/_on.txt" "$config"
+    
+    REMOVE_LINE "$config" "enable_uart=0"
+    REMOVE_LINE "$config" "disable_splash=1"
+    REMOVE_LINE "$config" "avoid_warnings=2"
+
+    echo "enable_uart=1" >> $config
+    echo "disable_splash=0" >> $config
 
 elif [ "$value" = "off" ]; then
     source $rpias/core
-    WRITE_CONFIG "$dir/_off.txt" "$config"
+    REMOVE_LINE "$config" "enable_uart=1"
+    REMOVE_LINE "$config" "disable_splash=0"
+
+    echo "enable_uart=0" >> $config
+    echo "disable_splash=1" >> $config
+    echo "avoid_warnings=2" >> $config
 else
     exit 0
 fi
