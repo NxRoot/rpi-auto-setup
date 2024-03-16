@@ -8,6 +8,7 @@ Automated tool to setup a minimal raspbian installation with some useful feature
 
 ## Features
 
+* 💯 &nbsp;Powerful scripting and configuration tool.
 * 🧬 &nbsp;Install multiple tools with a single command.
 * ✍️ &nbsp;Create your own scripts to install custom tools.
 * ✅ &nbsp;Host pre-configured web servers and applications.
