@@ -4,13 +4,14 @@ rpias=$2
 value=$3
 dir=$(dirname $0)
 
+config=/etc/samba/smb.conf
+settings=$dir/_smb.txt
+
 sudo rm -rf $root/shared
 mkdir $root/shared
 sudo chmod -R 777 $root/shared
 sudo apt install -y samba samba-common-bin
-sudo cat $dir/_smb.txt >> /etc/samba/smb.conf
 
-if [ "$value" != "" ]; then
-    source $rpias/core
-    REPLACE_LINE "/etc/samba/smb.conf" "/home/pi/shared" "$value"
-fi
+source $rpias/core
+WRITE_CONFIG "$settings" "$config"
+REPLACE_LINE "$config" "/home/pi/shared" "$root/shared"
