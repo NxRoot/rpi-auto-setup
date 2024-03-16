@@ -1,0 +1,32 @@
+#!/bin/bash
+root=$1
+rpias=$2
+value=$3
+dir=$(dirname $0)
+config=/boot/config.txt
+
+if [ "$value" = "on" ]; then
+    source $rpias/core
+    REPLACE_LINE "$config" "enable_uart="
+    REPLACE_LINE "$config" "disable_splash="
+    REPLACE_LINE "$config" "avoid_warnings="
+
+    echo "enable_uart=1" >> $config
+    echo "disable_splash=0" >> $config
+
+elif [ "$value" = "off" ]; then
+    source $rpias/core
+    REPLACE_LINE "$config" "enable_uart="
+    REPLACE_LINE "$config" "disable_splash="
+    REPLACE_LINE "$config" "avoid_warnings="
+
+    echo "enable_uart=0" >> $config
+    echo "disable_splash=1" >> $config
+    echo "avoid_warnings=2" >> $config
+else
+    exit 0
+fi
+
+
+echo "Config changed at: $config"
+echo "Please reboot your device for changes to take effect."

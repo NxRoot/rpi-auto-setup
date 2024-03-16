@@ -61,7 +61,7 @@ sudo chmod +x /usr/local/bin/rpia
 
 ## Usage
 ```console
-rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
+rpia --autologin=B2 --server=node --client=js --splash=off --chrome --smb --reboot
 ```
 <details>
   <summary> &nbsp; <b>--hello</b></summary>
@@ -69,6 +69,20 @@ rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
   #### Test Script
   ```bash
   rpia --hello
+  ```
+</details>
+
+<details>
+  <summary> &nbsp; <b>--splash</b></summary>
+
+  #### Enable/Disable Splashscreen
+  > This will change the config file located at: `/boot/config.txt`
+  ```bash
+  # Enable
+  rpia --splash=on
+
+  # Disable
+  rpia --splash=off
   ```
 </details>
 
@@ -196,6 +210,61 @@ rpia --autologin=B2 --server=node --client=js --chrome --smb --reboot
   rpia --tft=MHS35
   ```
 </details>
+
+&nbsp;
+
+## Custom
+You can create your own modules using ***bash*** script.<br>
+The `modules` folder contains an example script that you can use as reference.
+```bash
+cat ~/rpia/modules/hello/install
+```
+The first 3 arguments will be received in every script.<br>
+- `$root` Path to home folder
+- `$rpias` Path to rpia folder
+- `$value` Passed in command --key=value
+```bash
+#!/bin/bash
+root=$1
+rpias=$2
+value=$3
+dir=$(dirname $0)
+
+echo This is a test script
+echo $root $rpias $value $dir
+```
+
+## Lets make a script to install nmap
+First steps
+```bash
+# Create a new folder
+mkdir ~/rpia/modules/nmap
+
+# Copy example script to your folder
+cp ~/rpia/modules/hello/install ~/rpia/modules/nmap/install
+
+# Open the script with your favorite editor
+nano ~/rpia/modules/nmap/install
+```
+The script content
+```bash
+#!/bin/bash
+root=$1
+rpias=$2
+value=$3
+dir=$(dirname $0)
+
+# install nmap
+sudo apt install -y nmap
+
+# print some message
+echo "Successfully installed 'Nmap'"
+
+```
+Calling your script
+```console
+rpia --nmap
+```
 
 &nbsp;
 
