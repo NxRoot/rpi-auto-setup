@@ -290,8 +290,8 @@ rpia --nmap
   
   ### Create Folder 
   ```bash
-  mkdir /home/pi/pi-server
-  cd /home/pi/pi-server
+  mkdir ~/pi-server
+  cd ~/pi-server
   ```
   
   ### Create Server 
@@ -339,8 +339,8 @@ rpia --nmap
   
   ### Create Folder 
   ```bash
-  mkdir /home/pi/pi-server
-  cd /home/pi/pi-server
+  mkdir ~/pi-server
+  cd ~/pi-server
   ```
   
   ### Create virtual environment
@@ -389,7 +389,7 @@ rpia --nmap
   
   ### Create Folders
   ```bash
-  cd /home/pi/pi-server
+  cd ~/pi-server
   mkdir client
   mkdir client/build
   ```
@@ -421,12 +421,12 @@ rpia --nmap
   ```
   ### Create React App
   ```bash
-  cd /home/pi/pi-server
+  cd ~/pi-server
   npx create-react-app client
   ```
   ### Build Website
   ```bash
-  cd /home/pi/pi-server/client
+  cd ~/pi-server/client
   npm run build
   ```
   </details>
@@ -441,8 +441,8 @@ rpia --nmap
 
   ### Create Folder 
   ```bash
-  mkdir /home/pi/shared
-  sudo chmod -R 777 /home/pi/shared
+  mkdir ~/shared
+  sudo chmod -R 777 ~/shared
   ```
   ### Install Samba 
   ```bash
@@ -453,7 +453,7 @@ rpia --nmap
   ```bash
   # Add to end of file
   [shared]
-  path=/home/pi/shared
+  path=~/shared
   public = yes
   read only = no
   guest only = yes
@@ -478,13 +478,13 @@ rpia --nmap
   ```
   
   ### Boot Config
-  `sudo nano /home/pi/.bash_profile`
+  `sudo nano ~/.bash_profile`
   ```bash
   [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && startx -- -nocursor
   ```
   
   ### Start Script
-  `sudo nano /home/pi/.xinitrc`
+  `sudo nano ~/.xinitrc`
   ```bash
   #!/usr/bin/env sh
   
