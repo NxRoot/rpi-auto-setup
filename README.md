@@ -242,8 +242,8 @@ First steps
 # Go to 'modules' folder
 cd ~/rpia/modules
 
-# Create a new folder called 'nmap'
-mkdir nmap
+# Copy example script to 'nmap' folder 
+cp hello nmap
 
 # Open the script with text editor
 nano nmap/install
