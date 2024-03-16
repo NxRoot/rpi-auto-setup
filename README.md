@@ -29,7 +29,7 @@ Automated tool to setup a minimal raspbian installation with some useful feature
 6. ### &nbsp; Configure settings before flashing
     - Setup Wifi Network
     - Enable SSH
-    - User: Pi
+    - User: pi
     - Password: YOUR PASSWORD
 </details>
 
