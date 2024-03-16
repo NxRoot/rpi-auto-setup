@@ -7,25 +7,14 @@ config=/boot/config.txt
 
 if [ "$value" = "on" ]; then
     source $rpias/core
-    REPLACE_LINE "$config" "enable_uart=0"
-    REPLACE_LINE "$config" "disable_splash=1"
-    REPLACE_LINE "$config" "avoid_warnings=2"
-
-    echo "enable_uart=1" >> $config
-    echo "disable_splash=0" >> $config
+    WRITE_CONFIG "$dir/_on.txt" "$config"
 
 elif [ "$value" = "off" ]; then
     source $rpias/core
-    REPLACE_LINE "$config" "enable_uart=1"
-    REPLACE_LINE "$config" "disable_splash=0"
-
-    echo "enable_uart=0" >> $config
-    echo "disable_splash=1" >> $config
-    echo "avoid_warnings=2" >> $config
+    WRITE_CONFIG "$dir/_off.txt" "$config"
 else
     exit 0
 fi
-
 
 echo "Config changed at: $config"
 echo "Please reboot your device for changes to take effect."
