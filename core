@@ -6,9 +6,13 @@ REPLACE_LINE() {
     echo "$file_content" > $1
 }
 
+REMOVE_LINE() {
+    sudo ex -s +"g/$2/d" -cwq $1
+}
+
 WRITE_CONFIG() {
     while read line; do
-        REPLACE_LINE "$2" "$line"
+        REMOVE_LINE "$2" "$line"
     done <$1
     sudo cat $1 >> $2
 }
