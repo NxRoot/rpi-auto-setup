@@ -239,14 +239,14 @@ echo $root $rpias $value $dir
 ## Lets make a script to install nmap
 First steps
 ```bash
-# Create a new folder
-mkdir ~/rpia/modules/nmap
+# Go to 'modules' folder
+cd ~/rpia/modules
 
-# Copy example script to your folder
-cp ~/rpia/modules/hello/install ~/rpia/modules/nmap/install
+# Create a new folder called 'nmap'
+mkdir nmap
 
-# Open the script with your favorite editor
-nano ~/rpia/modules/nmap/install
+# Open the script with text editor
+nano nmap/install
 ```
 The script content
 ```bash
