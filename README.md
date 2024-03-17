@@ -179,16 +179,6 @@ rpia --autologin=B2 --server=node --client=js --splash=off --chrome --smb --rebo
 </details>
 
 <details>
-  <summary> &nbsp; <b>--kali</b></summary>
-
-  #### Install Katoolin (Kali Tools Installer)
-  > Please read documentation: [Katoolin](https://github.com/LionSec/katoolin)
-  ```bash
-  rpia --kali
-  ```
-</details>
-
-<details>
   <summary> &nbsp; <b>--msf</b></summary>
 
   #### Install Metasploit Framework
