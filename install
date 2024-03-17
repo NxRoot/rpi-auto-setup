@@ -10,15 +10,15 @@ if [ $# = 0 ]; then
     echo
     echo "${yellow}You must specify the options to execute.${reset}"
     echo
-    echo "Example: ${purple}rpia${reset} --autologin=B2 --server=node --client=js --chrome --smb --reboot"
+    echo "Example: ${purple}rpia${reset} --autologin=B2 --server=node --client=js --splash=off --chrome --smb --reboot"
     echo
     echo
     exit 0
 fi
 
+clear
 echo
 echo "[${purple}Started${reset}] RPI Auto-Setup"
-echo
 
 reboot=false
 destroy=false
@@ -34,8 +34,9 @@ rpias=$root/rpia
 mods=$rpias/modules
 
 # Disable Reboot
-sudo mv /sbin/reboot /sbin/reboot.disabled
-
+if [ -f "/sbin/reboot" ]; then
+    sudo mv /sbin/reboot /sbin/reboot.disabled
+fi
 
 # Iterate arguments
 for arg in "$@"; do
@@ -49,14 +50,14 @@ for arg in "$@"; do
 
         if [ -f "$mods/$strip/install" ]; then
             echo 
-            echo "[${green}Installing${reset}] $strip $value"
+            echo "[${green}Executing${reset}] $strip $value"
             echo 
             sudo bash "$mods/$strip/install" $root $rpias $value
             success="$success $arg"
 
         elif [ -f "$mods/$strip-$value/install" ]; then
             echo 
-            echo "[${green}Installing${reset}] $strip $value"
+            echo "[${green}Executing${reset}] $strip $value"
             echo 
             sudo bash "$mods/$strip-$value/install" $root $rpias $value
             success="$success $arg"
@@ -87,23 +88,25 @@ done
 
 # Print Success
 echo
-echo "[${green}Completed${reset}] RPI Auto-Setup" "$(printf '%s ' "$success")"
+echo "[${green}Completed${reset}] RPI Auto-Setup $(printf '%s ' "$success")"
 echo
 
 # Print Skipped
 if [ "$skipped" != "" ]; then
-    echo "[${yellow}Skipped${reset}]:" "$(printf '%s ' "$skipped")"
+    echo "[${yellow}Skipped${reset}]: $(printf '%s ' "$skipped")"
     echo
 fi
 
 # Print Failed
 if [ "$failed" != "" ]; then
-    echo "[${red}Failed${reset}]:" "$(printf '%s ' "$failed")"
+    echo "[${red}Failed${reset}]: $(printf '%s ' "$failed")"
     echo
 fi
 
 # Enable Reboot
-sudo mv /sbin/reboot.disabled /sbin/reboot
+if [ -f "/sbin/reboot.disabled" ]; then
+    sudo mv /sbin/reboot.disabled /sbin/reboot
+fi
 
 # Destroy files
 if [ $destroy = true ]; then

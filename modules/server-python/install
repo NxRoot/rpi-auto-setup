@@ -28,12 +28,12 @@ search="exit 0"
 a="cd $root/pi-server && npm start &"
 b="cd $root/pi-server && .venv/bin/flask --app server.py run --no-debugger --host=0.0.0.0 -p 5001 &"
 
+source $rpias/core
+
 # Remove exit 0
-sudo ex -s +"g/$search/d" -cwq $file
+REMOVE_LINE "$file" "$search"
 
 # Replace existent
-cd $rpias
-source core
 REPLACE_LINE "$file" "$a"
 REPLACE_LINE "$file" "$b"
 

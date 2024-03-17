@@ -1,0 +1,29 @@
+#!/bin/bash
+root=$1
+rpias=$2
+value=$3
+dir=$(dirname $0)
+
+dnsconfig=/etc/dnsmasq.conf
+
+if [ "$value" != "--wifi-pass" ]; then
+if [ -f "$dnsconfig.orig" ]; then
+
+source $rpias/core
+REMOVE_LINE "$dnsconfig" "wpa="
+REMOVE_LINE "$dnsconfig" "wpa_passphrase="
+REMOVE_LINE "$dnsconfig" "wpa_key_mgmt="
+REMOVE_LINE "$dnsconfig" "wpa_pairwise="
+REMOVE_LINE "$dnsconfig" "rsn_pairwise="
+
+sudo cat > $dnsconfig << EOF
+wpa=2
+wpa_passphrase=$value
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=TKIP CCMP
+rsn_pairwise=CCMP
+EOF
+
+else
+    echo "Access point not configured. Please use '--wifi' before setting up the password."
+fi

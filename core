@@ -10,6 +10,15 @@ REMOVE_LINE() {
     sudo ex -s +"g/$2/d" -cwq $1
 }
 
+RESTORE() {
+    if [ -f "$1.orig" ]; then
+        sudo cat $1.orig > $1
+    fi
+    if [ -f "$1" ]; then
+        sudo mv $1 $1.orig
+    fi
+}
+
 WRITE_CONFIG() {
     while read line; do
         REMOVE_LINE "$2" "$line"

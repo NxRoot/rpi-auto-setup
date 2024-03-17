@@ -5,13 +5,29 @@ value=$3
 dir=$(dirname $0)
 
 config=/etc/samba/smb.conf
-settings=$dir/_smb.txt
+folder=shared
 
-sudo rm -rf $root/shared
-mkdir $root/shared
-sudo chmod -R 777 $root/shared
+sudo rm -rf $root/$folder
+mkdir $root/$folder
+sudo chmod -R 777 $root/$folder
 sudo apt install -y samba samba-common-bin
 
+if [ "$value" != "--smb" ]; then
+    folder=$value
+fi
+
 source $rpias/core
-WRITE_CONFIG "$settings" "$config"
-REPLACE_LINE "$config" "/home/pi/shared" "$root/shared"
+
+RESTORE "$config"
+sudo cat > $config << EOF
+[$folder]
+path=$root/$folder
+public = yes
+read only = no
+guest only = yes
+writeable = yes
+browseable = yes
+guest ok = yes
+force create mode = 0666
+force directory mode = 0777
+EOF
