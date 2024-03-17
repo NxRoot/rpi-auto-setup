@@ -447,7 +447,7 @@ rpia --nmap
   ```bash
   # Add to end of file
   [shared]
-  path=~/shared
+  path=/home/pi/shared
   public = yes
   read only = no
   guest only = yes
