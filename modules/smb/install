@@ -19,15 +19,13 @@ fi
 source $rpias/core
 
 RESTORE "$config"
-sudo cat > $config << EOF
-[$folder]
-path=$root/$folder
-public = yes
-read only = no
-guest only = yes
-writeable = yes
-browseable = yes
-guest ok = yes
-force create mode = 0666
-force directory mode = 0777
-EOF
+sudo echo "[$folder]" >> $config
+sudo echo "path=$root/$folder" >> $config
+sudo echo "public = yes" >> $config
+sudo echo "read only = no" >> $config
+sudo echo "guest only = yes" >> $config
+sudo echo "writeable = yes" >> $config
+sudo echo "browseable = yes" >> $config
+sudo echo "guest ok = yes" >> $config
+sudo echo "force create mode = 0666" >> $config
+sudo echo "force directory mode = 0777" >> $config
