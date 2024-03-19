@@ -15,7 +15,7 @@ RESTORE() {
         sudo cat $1.orig > $1
     fi
     if [ -f "$1" ]; then
-        sudo mv $1 $1.orig
+        sudo cp $1 $1.orig
     fi
 }
 
