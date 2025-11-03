@@ -92,17 +92,11 @@ rpia --autologin=B2 --server=node --client=js --splash=off --chrome --smb --rebo
 
   #### Configure boot mode
   ```bash
-  # B1 - Console
-  rpia --autologin=B1
+  # Enable
+  rpia --autologin=on
 
-  # B2 - Console Autologin
-  rpia --autologin=B2
-
-  # B3 - Desktop
-  rpia --autologin=B3
-
-  # B4 - Desktop Autologin
-  rpia --autologin=B4
+  # Disable
+  rpia --autologin=off
   ```
 </details>
 
