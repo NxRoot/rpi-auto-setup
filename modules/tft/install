@@ -7,16 +7,10 @@ dir=$(dirname $0)
 # Setup boot script
 file=/etc/rc.local
 search="exit 0"
-
-# REST - Node
-a="cd $root/pi-server && npm start &"
-
-# REST - Python
-b="cd $root/pi-server && .venv/bin/flask --app server.py run --no-debugger --host=0.0.0.0 -p 5001 &"
+boot="cd ~/nextjs && npm run start &"
 
 # Find strings
-aE=$(cat $file | grep "$a")
-bE=$(cat $file | grep "$b")
+bootE=$(cat $file | grep "$boot")
 
 # Install LCD-SHOW
 cd $root
@@ -31,24 +25,13 @@ if [ -f "/usr/share/X11/xorg.conf.d/99-fbturbo.conf" ]; then
 fi
 
 # Remove if exist
-if [ "$aE" != "" ]; then
+if [ "$bootE" != "" ]; then
 
     # Remove exit 0
     sudo ex -s +"g/$search/d" -cwq $file
 
     # Append lines
-    sudo echo $a >> $file
-    sudo echo $b >> $file
-    sudo echo $search >> $file
-
-elif [ "$bE" != "" ]; then
-
-    # Remove exit 0
-    sudo ex -s +"g/$search/d" -cwq $file
-
-    # Append lines
-    sudo echo $c >> $file
-    sudo echo $d >> $file
+    sudo echo $boot >> $file
     sudo echo $search >> $file
 
 fi

@@ -14,5 +14,5 @@ fi
 
 if [ "$value" != "--chrome" ]; then
     source $rpias/core
-    REPLACE_LINE "$root/.xinitrc" "http://localhost:5001" "$value"
+    REPLACE_LINE "$root/.xinitrc" "http://localhost:3000" "$value"
 fi

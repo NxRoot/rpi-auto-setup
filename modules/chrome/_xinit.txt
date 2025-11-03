@@ -8,7 +8,7 @@ xset -dpms
 xset s off
 xset s noblank
 
-chromium-browser --kiosk "http://localhost:5001" \
+chromium-browser --kiosk "http://localhost:3000" \
   --window-size=$WIDTH,$HEIGHT \
   --window-position=-10,0 \
   --start-fullscreen \

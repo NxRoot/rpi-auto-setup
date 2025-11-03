@@ -17,10 +17,3 @@ RESTORE() {
         sudo cp $1 $1.orig
     fi
 }
-
-WRITE_CONFIG() {
-    while read line; do
-        REMOVE_LINE "$2" "$line"
-    done <$1
-    sudo cat $1 >> $2
-}

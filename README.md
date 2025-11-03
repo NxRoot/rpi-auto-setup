@@ -52,17 +52,13 @@ Automated tool to setup a minimal raspbian installation with some useful feature
 
 ## Installation
 
-```tsx
-sudo apt install -y git
-sudo rm -rf ~/rpia
-git clone https://github.com/NxRoot/rpi-auto-setup.git ~/rpia
-sudo cp ~/rpia/install /usr/local/bin/rpia
-sudo chmod +x /usr/local/bin/rpia
+```bash
+curl -s https://raw.githubusercontent.com/NxRoot/rpi-auto-setup/refs/heads/main/install | sh
 ```
 
 ## Usage
 ```console
-rpia --autologin=B2 --server=node --client=js --splash=off --chrome --smb --reboot
+rpia --autologin=on --splash=off --nextjs --chrome --smb --reboot
 ```
 <details>
   <summary> &nbsp; <b>--hello</b></summary>
@@ -119,32 +115,13 @@ rpia --autologin=B2 --server=node --client=js --splash=off --chrome --smb --rebo
 </details>
 
 <details>
-  <summary> &nbsp; <b>--server</b></summary>
+  <summary> &nbsp; <b>--nextjs</b></summary>
 
-  #### Host REST API
-  > This will host a local server running on http://localhost:5001
+  #### Host Web App
+  > This will host a web application running on http://localhost:3000
   ```bash
-  # Node JS
-  rpia --server=node
-
-  # Python
-  rpia --server=python
-  ```
-</details>
-
-<details>
-  <summary> &nbsp; <b>--client</b></summary>
-
-  #### Host Web App 
-  > This will add a <b>web application</b> to a server hosted by the `--server` argument.<br>
-  > This can only be used after `--server`.
-  
-  ```bash
-  # Javascript
-  rpia --client=js
-
-  # React
-  rpia --client=react
+  # Next JS
+  rpia --nextjs
   ```
 </details>
 
@@ -266,7 +243,7 @@ rpia --nmap
   <br>
   
   ## REST API
-  > This will host a local server running on http://localhost:5001
+  > This will host a local server running on http://localhost:3000
   <details>
     <summary> &nbsp; <b>Using NodeJS</b></summary>
   
@@ -486,7 +463,7 @@ rpia --nmap
   xset s noblank
   
   # Start browser
-  chromium-browser --kiosk "http://localhost:5001" \
+  chromium-browser --kiosk "http://localhost:3000" \
     --window-size=$WIDTH,$HEIGHT \
     --window-position=-10,0 \
     --start-fullscreen \

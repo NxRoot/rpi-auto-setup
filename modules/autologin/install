@@ -2,25 +2,24 @@
 # Toggle console auto-login for Raspberry Pi (Debian-based)
 # Works with systemd on Raspberry Pi OS, Ubuntu, etc.
 
-set -e
-value=${3:-on}
+VALUE=${3:-on}
 USER=$(who -m | awk '{ print $1 }')
 SERVICE="getty@tty1.service"
-OVERRIDE_DIR="/etc/systemd/system/${SERVICE}.d"
-OVERRIDE_FILE="${OVERRIDE_DIR}/autologin.conf"
+SERVICE_DIR="/etc/systemd/system/${SERVICE}.d"
+SERVICE_FILE="${SERVICE_DIR}/autologin.conf"
 
-if [ -f "$OVERRIDE_FILE" ]; then
-    sudo rm -f $OVERRIDE_FILE
+if [ -f "$SERVICE_FILE" ]; then
+    sudo rm -f $SERVICE_FILE
     sudo systemctl --quiet set-default multi-user.target
-    sudo mkdir -p $OVERRIDE_DIR
-    sudo cat > $OVERRIDE_FILE << EOF
+    sudo mkdir -p $SERVICE_DIR
+    sudo cat > $SERVICE_FILE << EOF
 [Service]
 ExecStart=
 ExecStart=-/sbin/agetty --autologin $USER --noclear %I \$TERM
 EOF
 fi
 
-if [ "$value" = "on" ]; then
+if [ "$VALUE" = "on" ]; then
     echo "Enabled auto-login for user '${USER}'..."
     sudo systemctl enable ${SERVICE}
 else
