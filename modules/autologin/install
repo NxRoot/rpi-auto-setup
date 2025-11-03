@@ -1,69 +1,31 @@
 #!/bin/bash
-root=$1
-rpias=$2
-value=$3
-dir=$(dirname $0)
+# Toggle console auto-login for Raspberry Pi (Debian-based)
+# Works with systemd on Raspberry Pi OS, Ubuntu, etc.
 
+set -e
+value=${3:-on}
 USER=$(who -m | awk '{ print $1 }')
+SERVICE="getty@tty1.service"
+OVERRIDE_DIR="/etc/systemd/system/${SERVICE}.d"
+OVERRIDE_FILE="${OVERRIDE_DIR}/autologin.conf"
 
-disable_raspi_config_at_boot() {
-  if [ -e /etc/profile.d/raspi-config.sh ]; then
-    rm -f /etc/profile.d/raspi-config.sh
-    if [ -e /etc/systemd/system/getty@tty1.service.d/raspi-config-override.conf ]; then
-      rm /etc/systemd/system/getty@tty1.service.d/raspi-config-override.conf
-    fi
-    telinit q
-  fi
-}
-
-# B1 - Console
-if [ "$value" = "B1" ]; then
-    echo "Boot mode changed to: $value - Console"
-    systemctl --quiet set-default multi-user.target
-    rm -f /etc/systemd/system/getty@tty1.service.d/autologin.conf
-fi
-
-# B2 - Console Autologin
-if [ "$value" = "B2" ]; then
-    echo "Boot mode changed to: $value - Console Autologin"
-    systemctl --quiet set-default multi-user.target
-    cat > /etc/systemd/system/getty@tty1.service.d/autologin.conf << EOF
+if [ -f "$OVERRIDE_FILE" ]; then
+    sudo rm -f $OVERRIDE_FILE
+    sudo systemctl --quiet set-default multi-user.target
+    sudo mkdir -p $OVERRIDE_DIR
+    sudo cat > $OVERRIDE_FILE << EOF
 [Service]
 ExecStart=
 ExecStart=-/sbin/agetty --autologin $USER --noclear %I \$TERM
 EOF
 fi
 
-# B3 - Desktop
-if [ "$value" = "B3" ]; then
-    if [ -e /etc/init.d/lightdm ]; then
-        echo "Boot mode changed to: $value - Desktop"
-        systemctl --quiet set-default graphical.target
-        rm -f /etc/systemd/system/getty@tty1.service.d/autologin.conf
-        sed /etc/lightdm/lightdm.conf -i -e "s/^autologin-user=.*/#autologin-user=/"
-        disable_raspi_config_at_boot
-    else
-        whiptail --msgbox "Do 'sudo apt-get install lightdm' to allow configuration of boot to desktop" 20 60 2
-        return 1
-    fi
-
+if [ "$value" = "on" ]; then
+    echo "Enabled auto-login for user '${USER}'..."
+    sudo systemctl enable ${SERVICE}
+else
+    echo "Disabled auto-login for user '${USER}'..."
+    sudo systemctl disable ${SERVICE}
 fi
 
-# B4 - Desktop Autologin
-if [ "$value" = "B4" ]; then
-    if [ -e /etc/init.d/lightdm ]; then
-        echo "Boot mode changed to: $value - Desktop Autologin"
-        systemctl --quiet set-default graphical.target
-        cat > /etc/systemd/system/getty@tty1.service.d/autologin.conf << EOF
-[Service]
-ExecStart=
-ExecStart=-/sbin/agetty --autologin $USER --noclear %I \$TERM
-EOF
-        sed /etc/lightdm/lightdm.conf -i -e "s/^\(#\|\)autologin-user=.*/autologin-user=$USER/"
-        disable_raspi_config_at_boot
-    else
-        whiptail --msgbox "Do 'sudo apt-get install lightdm' to allow configuration of boot to desktop" 20 60 2
-        return 1
-    fi
-fi
-
+echo "Please reboot your device for changes to take effect."
