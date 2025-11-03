@@ -15,7 +15,7 @@ npx --yes create-next-app@latest nextjs --tailwind --react-compiler --no-linter 
 # Setup boot script
 file=/etc/rc.local
 search="exit 0"
-boot="cd ~/nextjs && npm run start &"
+boot="cd ~/nextjs && npm run build && npm run start &"
 
 sudo ex -s +"g/$search/d" -cwq $file
 sudo echo $boot >> $file
