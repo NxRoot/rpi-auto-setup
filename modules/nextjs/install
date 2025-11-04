@@ -1,7 +1,9 @@
 #!/bin/bash
 
+cd $1
+
 # Remove folders
-sudo rm -rf ~/nextjs
+sudo rm -rf nextjs
 
 # Install Node JS
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
@@ -9,5 +11,4 @@ sudo apt-get install -y nodejs
 sudo npm install -g npm
 
 # Create Next JS App
-cd ~/
 npx --yes create-next-app@latest nextjs --tailwind --react-compiler --no-linter --ts --src-dir --use-npm --no-app --no-turbopack --import-alias "@/*"
