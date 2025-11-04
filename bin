@@ -88,7 +88,7 @@ done
 
 # Print Success
 echo
-echo "[${green}Completed${reset}] RPI Auto-Setup $(printf '%s ' "$success")"
+echo "[${green}Completed${reset}] rpia$(printf '%s ' "$success")"
 echo
 
 # Print Skipped
