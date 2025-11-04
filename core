@@ -29,18 +29,24 @@ TOGGLE_SERVICE() {
 }
 
 CREATE_SERVICE() {
-    sudo echo "[Unit]
-    Description=$1
-    After=network.target
-
-    [Service]
-    ExecStart=/bin/bash -c '$2'
-    Restart=always
-    RestartSec=5
-
-    [Install]
-    WantedBy=multi-user.target" > /etc/systemd/system/$1.service
-
+    service=/etc/systemd/system/$1.service
+    sudo rm -f $service
+    sudo touch $service
+    echo "[Unit]" > $service
+    echo "Description=$1" >> $service
+    echo "After=network-online.target" >> $service
+    echo "" >> $service
+    echo "[Service]" >> $service
+    echo "ExecStart=/bin/bash -c '$2'" >> $service
+    echo "StandardOutput=inherit" >> $service
+    echo "StandardError=inherit" >> $service
+    echo "Restart=always" >> $service
+    echo "User=pi" >> $service
+    echo "Group=pi" >> $service
+    echo "WorkingDirectory=/home/pi/$1" >> $service
+    echo "" >> $service
+    echo "[Install]" >> $service
+    echo "WantedBy=multi-user.target" >> $service
     sudo systemctl enable $1
     sudo systemctl start $1
 }

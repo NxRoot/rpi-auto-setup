@@ -10,13 +10,10 @@ SERVICE_FILE="${SERVICE_DIR}/autologin.conf"
 
 if [ -f "$SERVICE_FILE" ]; then
     sudo rm -f $SERVICE_FILE
-    sudo systemctl --quiet set-default multi-user.target
     sudo mkdir -p $SERVICE_DIR
-    sudo cat > $SERVICE_FILE << EOF
-[Service]
-ExecStart=
-ExecStart=-/sbin/agetty --autologin $USER --noclear %I \$TERM
-EOF
+    echo "[Service]" > $SERVICE_FILE
+    echo "ExecStart=" >> $SERVICE_FILE
+    echo "ExecStart=-/sbin/agetty --autologin $USER --noclear %I \$TERM" >> $SERVICE_FILE
 fi
 
 if [ "$VALUE" = "on" ]; then
