@@ -12,3 +12,7 @@ sudo npm install -g npm
 
 # Create Next JS App
 npx --yes create-next-app@latest nextjs --tailwind --react-compiler --no-linter --ts --src-dir --use-npm --no-app --no-turbopack --import-alias "@/*"
+
+file=/etc/rc.local
+search="fbcp &"
+REPLACE_LINE $file "$search" "cd /home/pi/nextjs && npm run dev &\n\n$search"
