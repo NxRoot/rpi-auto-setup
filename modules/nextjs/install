@@ -13,6 +13,4 @@ cd ~/
 npx --yes create-next-app@latest nextjs --tailwind --react-compiler --no-linter --ts --src-dir --use-npm --no-app --no-turbopack --import-alias "@/*"
 
 # Toggle Next JS service
-source $rpias/core
-REPLACE_LINE "/etc/rc.local" "exit 0" "cd ~/nextjs && npm run build && npm run start &"
-echo "exit 0" >> /etc/rc.local
+TOGGLE_SERVICE "nextjs" "cd ~/nextjs && npm run build && npm run start"

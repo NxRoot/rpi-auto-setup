@@ -32,21 +32,21 @@ CREATE_SERVICE() {
     service=/etc/systemd/system/$1.service
     sudo rm -f $service
     sudo touch $service
-    echo "[Unit]" > $service
-    echo "Description=$1" >> $service
-    echo "After=network-online.target" >> $service
-    echo "" >> $service
-    echo "[Service]" >> $service
-    echo "ExecStart=/bin/bash -c '$2'" >> $service
-    echo "StandardOutput=inherit" >> $service
-    echo "StandardError=inherit" >> $service
-    echo "Restart=always" >> $service
-    echo "User=pi" >> $service
-    echo "Group=pi" >> $service
-    echo "WorkingDirectory=/home/pi/$1" >> $service
-    echo "" >> $service
-    echo "[Install]" >> $service
-    echo "WantedBy=multi-user.target" >> $service
+    sudo echo "[Unit]" > $service
+    sudo echo "Description=$1" >> $service
+    sudo echo "Before=network.target" >> $service
+    sudo echo "" >> $service
+    sudo echo "[Service]" >> $service
+    sudo echo "ExecStart=/bin/bash -c '$2'" >> $service
+    sudo echo "StandardOutput=inherit" >> $service
+    sudo echo "StandardError=inherit" >> $service
+    sudo echo "Restart=always" >> $service
+    sudo echo "User=pi" >> $service
+    sudo echo "Group=pi" >> $service
+    sudo echo "WorkingDirectory=/home/pi/$1" >> $service
+    sudo echo "" >> $service
+    sudo echo "[Install]" >> $service
+    sudo echo "WantedBy=multi-user.target" >> $service
     sudo systemctl enable $1
     sudo systemctl start $1
 }
