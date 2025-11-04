@@ -15,7 +15,7 @@ sudo apt-get install -y nodejs
 sudo npm install -g npm
 
 # Create Next JS App
-npx --yes create-next-app@latest nextjs --tailwind --react-compiler --no-linter --ts --src-dir --use-npm --no-app --no-turbopack --no-install --import-alias "@/*"
+npx --yes create-next-app@latest nextjs --tailwind --react-compiler --no-linter --ts --src-dir --use-npm --no-app --no-turbopack --skip-install --disable-git --import-alias "@/*"
 
 file=/etc/rc.local
 search="fbcp &"
