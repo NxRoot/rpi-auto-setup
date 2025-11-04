@@ -4,14 +4,6 @@ rpias=$2
 value=$3
 dir=$(dirname $0)
 
-# Setup boot script
-file=/etc/rc.local
-search="exit 0"
-boot="cd ~/nextjs && npm run start &"
-
-# Find strings
-bootE=$(cat $file | grep "$boot")
-
 # Install LCD-SHOW
 cd $root
 sudo rm -rf LCD-show
@@ -22,16 +14,4 @@ sudo ./$value-show
 
 if [ -f "/usr/share/X11/xorg.conf.d/99-fbturbo.conf" ]; then
     sudo mv /usr/share/X11/xorg.conf.d/99-fbturbo.conf ~
-fi
-
-# Remove if exist
-if [ "$bootE" != "" ]; then
-
-    # Remove exit 0
-    sudo ex -s +"g/$search/d" -cwq $file
-
-    # Append lines
-    sudo echo $boot >> $file
-    sudo echo $search >> $file
-
 fi

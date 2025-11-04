@@ -11,6 +11,3 @@ sudo npm install -g npm
 # Create Next JS App
 cd ~/
 npx --yes create-next-app@latest nextjs --tailwind --react-compiler --no-linter --ts --src-dir --use-npm --no-app --no-turbopack --import-alias "@/*"
-
-# Toggle Next JS service
-TOGGLE_SERVICE "nextjs" "cd ~/nextjs && npm run build && npm run start"
