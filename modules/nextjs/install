@@ -1,6 +1,8 @@
 #!/bin/bash
-
-cd /home/pi
+root=$1
+rpias=$2
+value=$3
+dir=$(dirname $0)
 
 # Remove folders
 sudo rm -rf nextjs
@@ -11,6 +13,7 @@ sudo apt-get install -y nodejs
 sudo npm install -g npm
 
 # Create Next JS App
+cd $root
 npx --yes create-next-app@latest nextjs --tailwind --react-compiler --no-linter --ts --src-dir --use-npm --no-app --no-turbopack --import-alias "@/*"
 
 search="fbcp &"
