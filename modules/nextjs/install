@@ -12,11 +12,5 @@ sudo npm install -g npm
 cd ~/
 npx --yes create-next-app@latest nextjs --tailwind --react-compiler --no-linter --ts --src-dir --use-npm --no-app --no-turbopack --import-alias "@/*"
 
-# Setup boot script
-file=/etc/rc.local
-search="exit 0"
-boot="cd ~/nextjs && npm run build && npm run start &"
-
-sudo ex -s +"g/$search/d" -cwq $file
-sudo echo $boot >> $file
-sudo echo $search >> $file
+# Toggle Next JS service
+TOGGLE_SERVICE "nextjs" "cd ~/nextjs && npm run build && npm run start"
