@@ -25,11 +25,11 @@ EOF
 
 if [ "$VALUE" = "on" ]; then
     echo "Enabled auto-login for user '${USER}'..."
+    echo "Created: $SERVICE_FILE"
     sudo systemctl enable $SERVICE
 else
     echo "Disabled auto-login for user '${USER}'..."
     sudo systemctl disable $SERVICE
 fi
 
-echo "Changes made to: $SERVICE_FILE"
 echo "Please reboot your device for changes to take effect."
