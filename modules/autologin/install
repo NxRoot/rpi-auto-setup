@@ -10,6 +10,7 @@ SERVICE_DIR="/etc/systemd/system/${SERVICE}.service.d"
 SERVICE_FILE="$SERVICE_DIR/autologin.conf"
 
 if [ -f "$SERVICE_FILE" ]; then
+    sudo systemctl disable $SERVICE
     sudo rm -f $SERVICE_FILE
 fi
 
@@ -17,19 +18,15 @@ if [ ! -d "$SERVICE_DIR" ]; then
     sudo mkdir -p $SERVICE_DIR
 fi
 
-sudo cat > $SERVICE_FILE << EOF
-[Service]
-ExecStart=
-ExecStart=-/sbin/agetty --autologin $USER --noclear %I \$TERM
-EOF
-
 if [ "$VALUE" = "on" ]; then
     echo "Enabled auto-login for user '${USER}'..."
     echo "Created: $SERVICE_FILE"
+    sudo echo "[Service]" > "$SERVICE_FILE"
+    sudo echo "ExecStart=" >> "$SERVICE_FILE"
+    sudo echo "ExecStart=-/sbin/agetty --autologin $USER --noclear %I \$TERM" >> "$SERVICE_FILE"
     sudo systemctl enable $SERVICE
 else
     echo "Disabled auto-login for user '${USER}'..."
-    sudo systemctl disable $SERVICE
 fi
 
 echo "Please reboot your device for changes to take effect."
