@@ -15,3 +15,15 @@ sudo ./$value-show
 if [ -f "/usr/share/X11/xorg.conf.d/99-fbturbo.conf" ]; then
     sudo mv /usr/share/X11/xorg.conf.d/99-fbturbo.conf ~
 fi
+
+file=/etc/rc.local
+search="fbcp &"
+command="cd /home/pi/nextjs && npm start &\n\n$search"
+found=$(cat $file | grep "$command")
+
+if [ "$found" != "" ]; then
+    REPLACE_LINE "$file" "$command"
+    REPLACE_LINE "$file" "$search" "$command"
+else
+    REPLACE_LINE "$file" "$search" "$command"
+fi

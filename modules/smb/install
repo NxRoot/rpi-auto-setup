@@ -16,8 +16,6 @@ if [ "$value" != "--smb" ]; then
     folder=$value
 fi
 
-source $rpias/core
-
 RESTORE "$config"
 sudo echo "[$folder]" >> $config
 sudo echo "path=$root/$folder" >> $config

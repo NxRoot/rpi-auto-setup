@@ -17,6 +17,14 @@ sudo npm install -g npm
 # Create Next JS App
 npx --yes create-next-app@latest nextjs --tailwind --react-compiler --no-linter --ts --src-dir --use-npm --no-app --no-turbopack --import-alias "@/*"
 
+file=/etc/rc.local
 search="fbcp &"
-source $rpias/core
-REPLACE_LINE /etc/rc.local "$search" "cd /home/pi/nextjs && npm start &\n\n$search"
+command="cd /home/pi/nextjs && npm start &\n\n$search"
+found=$(cat $file | grep "$command")
+
+if [ "$found" != "" ]; then
+    REPLACE_LINE "$file" "$command"
+    REPLACE_LINE "$file" "$search" "$command"
+else
+    REPLACE_LINE "$file" "$search" "$command"
+fi
