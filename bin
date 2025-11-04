@@ -55,14 +55,14 @@ for arg in "$@"; do
             echo 
             echo "[${green}Executing${reset}] $strip $value"
             echo 
-            bash "$mods/$strip/install" $root $rpias $value
+            sudo -u pi bash "$mods/$strip/install" $root $rpias $value
             success="$success $arg"
 
         elif [ -f "$mods/$strip-$value/install" ]; then
             echo 
             echo "[${green}Executing${reset}] $strip $value"
             echo 
-            bash "$mods/$strip-$value/install" $root $rpias $value
+            sudo -u pi bash "$mods/$strip-$value/install" $root $rpias $value
             success="$success $arg"
 
         else
