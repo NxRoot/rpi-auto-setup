@@ -4,14 +4,14 @@ root=/home/pi
 # Install Node JS
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt-get install -y nodejs
-sudo npm install -g npm
+sudo npm install -g create-next-app
 
 # Remove folders
-sudo rm -rf "${root}/nextjs"
-cd "${root}"
+sudo rm -rf /home/pi/nextjs
+cd /home/pi
 
 # Create Next JS App
-npx --yes create-next-app@latest ./ --tailwind --react-compiler --no-linter --ts --src-dir --use-npm --no-app --no-turbopack --skip-install --disable-git --import-alias "@/*"
+npm create-next-app@latest nextjs --tailwind --react-compiler --no-linter --ts --src-dir --use-npm --no-app --no-turbopack --skip-install --disable-git --import-alias "@/*"
 
 file=/etc/rc.local
 search="fbcp &"
