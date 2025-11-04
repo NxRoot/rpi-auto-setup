@@ -2,6 +2,7 @@
 
 sudo rm -rf ~/rpia
 sudo apt install -y git
+sudo rm -rf /usr/local/bin/rpia
 git clone https://github.com/NxRoot/rpi-auto-setup.git ~/rpia
 sudo cp ~/rpia/bin /usr/local/bin/rpia
 sudo chmod +x /usr/local/bin/rpia
