@@ -4,27 +4,32 @@
 
 VALUE=${3:-on}
 USER=$(who -m | awk '{ print $1 }')
-SERVICE="getty@tty1.service"
-SERVICE_DIR="/etc/systemd/system/${SERVICE}.d"
-SERVICE_FILE="${SERVICE_DIR}/autologin.conf"
+
+SERVICE="getty@tty1"
+SERVICE_DIR="/etc/systemd/system/${SERVICE}.service.d"
+SERVICE_FILE="$SERVICE_DIR/autologin.conf"
 
 if [ -f "$SERVICE_FILE" ]; then
     sudo rm -f $SERVICE_FILE
-    sudo systemctl --quiet set-default multi-user.target
+fi
+
+if [ ! -d "$SERVICE_DIR" ]; then
     sudo mkdir -p $SERVICE_DIR
-    sudo cat > $SERVICE_FILE << EOF
+fi
+
+sudo cat > $SERVICE_FILE << EOF
 [Service]
 ExecStart=
 ExecStart=-/sbin/agetty --autologin $USER --noclear %I \$TERM
 EOF
-fi
 
 if [ "$VALUE" = "on" ]; then
     echo "Enabled auto-login for user '${USER}'..."
-    sudo systemctl enable ${SERVICE}
+    sudo systemctl enable $SERVICE
 else
     echo "Disabled auto-login for user '${USER}'..."
-    sudo systemctl disable ${SERVICE}
+    sudo systemctl disable $SERVICE
 fi
 
+echo "Changes made to: $SERVICE_FILE"
 echo "Please reboot your device for changes to take effect."
