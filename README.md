@@ -53,7 +53,7 @@ Automated tool to setup a minimal raspbian installation with some useful feature
 ## Installation
 
 ```bash
-sudo curl -s https://raw.githubusercontent.com/NxRoot/rpi-auto-setup/refs/heads/main/install | sh
+curl -s https://raw.githubusercontent.com/NxRoot/rpi-auto-setup/refs/heads/main/install | sh
 ```
 
 ## Usage
