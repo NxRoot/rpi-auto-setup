@@ -1,12 +1,15 @@
-#!/usr/bin/env bash
-value=$1
+#!/bin/bash
+root=$1
+rpias=$2
+value=$3
+dir=$(dirname $0)
 
 config=/etc/samba/smb.conf
 folder=shared
 
-sudo rm -rf /home/pi/$folder
-mkdir /home/pi/$folder
-sudo chmod -R 777 /home/pi/$folder
+sudo rm -rf $root/$folder
+mkdir $root/$folder
+sudo chmod -R 777 $root/$folder
 sudo apt install -y samba samba-common-bin
 
 if [ "$value" != "--smb" ]; then
@@ -15,7 +18,7 @@ fi
 
 RESTORE "$config"
 sudo echo "[$folder]" >> $config
-sudo echo "path=/home/pi/$folder" >> $config
+sudo echo "path=$root/$folder" >> $config
 sudo echo "public = yes" >> $config
 sudo echo "read only = no" >> $config
 sudo echo "guest only = yes" >> $config

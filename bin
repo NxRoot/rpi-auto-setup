@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 reset='\033[0m'           # Reset
 red='\033[0;31m'          # Red
@@ -55,14 +55,14 @@ for arg in "$@"; do
             echo 
             echo "[${green}Executing${reset}] $strip $value"
             echo 
-            bash "$mods/$strip/install" $value
+            bash "$mods/$strip/install" $root $rpias $value
             success="$success $arg"
 
         elif [ -f "$mods/$strip-$value/install" ]; then
             echo 
             echo "[${green}Executing${reset}] $strip $value"
             echo 
-            bash "$mods/$strip-$value/install" $value
+            bash "$mods/$strip-$value/install" $root $rpias $value
             success="$success $arg"
 
         else

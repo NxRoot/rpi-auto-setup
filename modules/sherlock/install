@@ -1,7 +1,11 @@
-#!/usr/bin/env bash
+#!/bin/bash
+root=$1
+rpias=$2
+value=$3
+dir=$(dirname $0)
 
 # Install
-cd /home/pi
+cd $root
 sudo rm -rf sherlock
 git clone https://github.com/sherlock-project/sherlock.git
 cd sherlock
@@ -12,8 +16,9 @@ python3 -m venv .venv
 .venv/bin/pip3 install -r requirements.txt
 
 # Create alias
-al="alias sherlock='sudo /home/pi/sherlock/.venv/bin/python3 sherlock'"
+al="alias sherlock='sudo $root/sherlock/.venv/bin/python3 sherlock'"
 
-REPLACE_LINE "/home/pi/.bashrc" "$al"
-echo $al >> /home/pi/.bashrc
-source /home/pi/.bashrc
+cd $rpias
+REPLACE_LINE "$root/.bashrc" "$al"
+echo $al >> $root/.bashrc
+source $root/.bashrc

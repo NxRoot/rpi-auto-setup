@@ -1,4 +1,8 @@
-#!/usr/bin/env bash
-value=$1
+#!/bin/bash
+root=$1
+rpias=$2
+value=$3
+dir=$(dirname $0)
+
 echo This is a test script
-echo $value
+echo $root $rpias $value $dir

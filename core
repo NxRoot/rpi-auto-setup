@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 REPLACE_LINE() {
     content=$(<$1)

@@ -1,8 +1,11 @@
-#!/usr/bin/env bash
-value=$1
+#!/bin/bash
+root=$1
+rpias=$2
+value=$3
+dir=$(dirname $0)
 
 # Install LCD-SHOW
-cd /home/pi
+cd $root
 sudo rm -rf LCD-show
 git clone https://github.com/goodtft/LCD-show.git
 chmod -R 755 LCD-show
