@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -e
 
 reset='\033[0m'           # Reset
 red='\033[0;31m'          # Red
