@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 root=$1
 rpias=$2
 value=$3

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Toggle console auto-login for Raspberry Pi (Debian-based)
 # Works with systemd on Raspberry Pi OS, Ubuntu, etc.
 
