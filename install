@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+
 sudo rm -rf ~/rpia
 sudo apt install -y git
 sudo rm -rf /usr/local/bin/rpia

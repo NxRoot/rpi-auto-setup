@@ -1,8 +1,5 @@
-#!/bin/bash
-root=$1
-rpias=$2
-value=$3
-dir=$(dirname $0)
+#!/usr/bin/env bash
+value=$1
 config=/boot/config.txt
 
 if [ "$value" = "on" ]; then
