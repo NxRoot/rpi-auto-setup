@@ -22,7 +22,7 @@ npx create-next-app@latest nextjs \
 
 file=/etc/rc.local
 search="fbcp &"
-command="cd /home/pi/nextjs && npm start &\n\n$search"
+command="cd /home/pi/nextjs && npm run build && npm start &\n\n$search"
 found=$(cat $file | grep "$command")
 
 source $rpias/core
