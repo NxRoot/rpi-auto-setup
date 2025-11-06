@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 reset='\033[0m'           # Reset
 red='\033[0;31m'          # Red
@@ -34,7 +34,7 @@ rpias=$root/rpia
 # Modules folder
 mods=$rpias/modules
 # Load functions
-source $rpias/core
+. $rpias/core
 
 # Disable Reboot
 if [ -f "/sbin/reboot" ]; then
