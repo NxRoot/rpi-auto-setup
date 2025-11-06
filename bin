@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 reset='\033[0m'           # Reset
 red='\033[0;31m'          # Red
