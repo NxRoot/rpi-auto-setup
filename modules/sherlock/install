@@ -19,6 +19,7 @@ python3 -m venv .venv
 al="alias sherlock='sudo $root/sherlock/.venv/bin/python3 sherlock'"
 
 cd $rpias
+source $rpias/core
 REPLACE_LINE "$root/.bashrc" "$al"
 echo $al >> $root/.bashrc
 source $root/.bashrc

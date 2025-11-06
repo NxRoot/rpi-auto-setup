@@ -5,6 +5,8 @@ value=$3
 dir=$(dirname $0)
 config=/boot/config.txt
 
+source $rpias/core
+
 if [ "$value" = "on" ]; then
     REPLACE_LINE "$config" "enable_uart=0"
     REPLACE_LINE "$config" "disable_splash=1"

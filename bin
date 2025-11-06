@@ -33,8 +33,6 @@ root=~
 rpias=$root/rpia
 # Modules folder
 mods=$rpias/modules
-# Load functions
-. $rpias/core
 
 # Disable Reboot
 if [ -f "/sbin/reboot" ]; then

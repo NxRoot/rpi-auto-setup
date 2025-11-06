@@ -25,6 +25,8 @@ search="fbcp &"
 command="cd /home/pi/nextjs && npm start &\n\n$search"
 found=$(cat $file | grep "$command")
 
+source $rpias/core
+
 if [ "$found" != "" ]; then
     REPLACE_LINE "$file" "$command"
     REPLACE_LINE "$file" "$search" "$command"
