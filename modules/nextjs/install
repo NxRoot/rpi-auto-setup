@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Install Node JS
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
