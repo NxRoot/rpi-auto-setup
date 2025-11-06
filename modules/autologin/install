@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Toggle console auto-login for Raspberry Pi (Debian-based)
 # Works with systemd on Raspberry Pi OS, Ubuntu, etc.
 
-VALUE=${3:-on}
+VALUE=${1:-on}
 USER=$(who -m | awk '{ print $1 }')
 
 SERVICE="getty@tty1"

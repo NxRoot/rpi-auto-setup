@@ -1,23 +1,18 @@
-#!/bin/bash
-root=$1
-rpias=$2
-value=$3
-dir=$(dirname $0)
+#!/usr/bin/env bash
+value=$1
 config=/boot/config.txt
 
 if [ "$value" = "on" ]; then
-    source $rpias/core
-    REMOVE_LINE "$config" "enable_uart=0"
-    REMOVE_LINE "$config" "disable_splash=1"
-    REMOVE_LINE "$config" "avoid_warnings=2"
+    REPLACE_LINE "$config" "enable_uart=0"
+    REPLACE_LINE "$config" "disable_splash=1"
+    REPLACE_LINE "$config" "avoid_warnings=2"
 
     echo "enable_uart=1" >> $config
     echo "disable_splash=0" >> $config
 
 elif [ "$value" = "off" ]; then
-    source $rpias/core
-    REMOVE_LINE "$config" "enable_uart=1"
-    REMOVE_LINE "$config" "disable_splash=0"
+    REPLACE_LINE "$config" "enable_uart=1"
+    REPLACE_LINE "$config" "disable_splash=0"
 
     echo "enable_uart=0" >> $config
     echo "disable_splash=1" >> $config

@@ -1,13 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 REPLACE_LINE() {
-    file_content=$(<$1)
-    file_content=${file_content//$2/$3}
-    echo "$file_content" > $1
-}
-
-REMOVE_LINE() {
-    sudo ex -s +"g/$2/d" -cwq $1
+    content=$(<$1)
+    content=${content//$2/$3}
+    echo "$content" > $1
 }
 
 RESTORE() {

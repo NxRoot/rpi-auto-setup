@@ -1,18 +1,14 @@
-#!/bin/bash
-root=$1
-rpias=$2
-value=$3
-dir=$(dirname $0)
+#!/usr/bin/env bash
+value=$1
 
 sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox chromium-browser -y
-sudo cat $dir/_bash.txt > $root/.bash_profile
-sudo cat $dir/_xinit.txt > $root/.xinitrc
+sudo cat /home/pi/rpia/modules/chrome/_bash.txt > /home/pi/.bash_profile
+sudo cat /home/pi/rpia/modules/chrome/_xinit.txt > /home/pi/.xinitrc
 
 if [ -f "/usr/share/X11/xorg.conf.d/99-fbturbo.conf" ]; then
     sudo mv /usr/share/X11/xorg.conf.d/99-fbturbo.conf ~
 fi
 
 if [ "$value" != "--chrome" ]; then
-    source $rpias/core
-    REPLACE_LINE "$root/.xinitrc" "http://localhost:3000" "$value"
+    REPLACE_LINE "/home/pi/.xinitrc" "http://localhost:3000" "$value"
 fi

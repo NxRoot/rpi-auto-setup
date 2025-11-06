@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 reset='\033[0m'           # Reset
 red='\033[0;31m'          # Red
@@ -20,6 +20,7 @@ clear
 echo
 echo "[${purple}Started${reset}] RPI Auto-Setup"
 
+
 reboot=false
 destroy=false
 success=""
@@ -32,6 +33,8 @@ root=~
 rpias=$root/rpia
 # Modules folder
 mods=$rpias/modules
+# Load functions
+source $rpias/core
 
 # Disable Reboot
 if [ -f "/sbin/reboot" ]; then
@@ -52,14 +55,14 @@ for arg in "$@"; do
             echo 
             echo "[${green}Executing${reset}] $strip $value"
             echo 
-            sudo bash "$mods/$strip/install" $root $rpias $value
+            bash "$mods/$strip/install" $value
             success="$success $arg"
 
         elif [ -f "$mods/$strip-$value/install" ]; then
             echo 
             echo "[${green}Executing${reset}] $strip $value"
             echo 
-            sudo bash "$mods/$strip-$value/install" $root $rpias $value
+            bash "$mods/$strip-$value/install" $value
             success="$success $arg"
 
         else
@@ -88,7 +91,7 @@ done
 
 # Print Success
 echo
-echo "[${green}Completed${reset}] RPI Auto-Setup $(printf '%s ' "$success")"
+echo "[${green}Completed${reset}] rpia $(printf '%s ' "$success")"
 echo
 
 # Print Skipped
