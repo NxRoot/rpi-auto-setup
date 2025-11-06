@@ -1,15 +1,15 @@
 #!/bin/sh
-
+export HOME=/home/pi
 # Install Node JS
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt-get install -y nodejs
 npm install -g -y create-next-app
 
 # Remove folders
-sudo rm -rf /home/pi/nextjs
+sudo rm -rf $HOME/nextjs
 
 # Create Next JS App
-cd /home/pi
+cd $HOME
 npm create-next-app@latest nextjs \ 
   --tailwind \
   --react-compiler \
