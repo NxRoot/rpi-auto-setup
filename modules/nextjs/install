@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+set -e
 # Install Node JS
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt-get install -y nodejs
@@ -8,7 +8,8 @@ sudo apt-get install -y nodejs
 sudo rm -rf /home/pi/nextjs
 
 # Create Next JS App
-npx create-next-app@latest nextjs
+npm create-next-app@latest nextjs -- "--tailwind" "--react-compiler" "--no-linter" "--ts" "--src-dir" "--use-npm" "--no-app" "--no-turbopack" "--skip-install" "--disable-git" "--import-alias" "@/*"
+
 
 file=/etc/rc.local
 search="fbcp &"
