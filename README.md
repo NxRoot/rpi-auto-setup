@@ -58,7 +58,7 @@ curl -s https://raw.githubusercontent.com/NxRoot/rpi-auto-setup/refs/heads/main/
 
 ## Usage
 ```console
-rpia --autologin=on --splash=off --nextjs --chrome --smb --reboot
+rpia --splash=off --chrome=https://youtube.com --smb --reboot --destroy
 ```
 <details>
   <summary> &nbsp; <b>--hello</b></summary>
